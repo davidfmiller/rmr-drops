@@ -52,7 +52,21 @@
         if (options.center) {
           const left = parseInt(origin.width / 2 - rect.width / 2);
           drop.style.left = left + 'px';
+          rect = RMR.Node.getRect(drop);
         }
+
+        if (rect.right >= window.innerWidth) {
+          console.log(rect.right, window.innerWidth);
+          console.log('!');
+          drop.style.left = (window.innerWidth - rect.right - 15) + 'px';
+          rect = RMR.Node.getRect(drop);
+        }
+
+        if (rect.left < 0) {
+          drop.style.left = 10 + 'px';
+          rect = RMR.Node.getRect(drop);
+        }
+
 
         if (rect.bottom > window.innerHeight) {
           drop.style.top = 0 - rect.height + 'px';

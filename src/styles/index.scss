@@ -5,10 +5,6 @@ ul.rmr-drops {
   justify-content: flex-end;
 }
 
-ul.rmr-drops li.active dt a {
-/*  color: teal; */
-}
-
 ul.rmr-drops dt {
   background: rgba(0,0,0,0.1);
   @include rmr-dark {
