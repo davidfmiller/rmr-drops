@@ -23,7 +23,7 @@
     if (! parseInt(options.delay, 10)) {
       options.delay = 0;
     }
-    options.offset = parseInt(options.offset, 10) ? parseInt(options.offset, 10) : 0;
+    options.offset = parseInt(options.offset, 10) > 0 ? parseInt(options.offset, 10) : 0;
 
     const
       uls = options.node ? RMR.Node.getAll(options.node) : document.querySelectorAll('ul.rmr-drops'),
@@ -128,10 +128,14 @@
 
         const a = li.querySelector(':scope dt a');
         li.addEventListener('mouseenter', on);
-        li.addEventListener('mouseleave', off);
+        if (! options.debug) {
+          li.addEventListener('mouseleave', off);
+        }
         if (a) {
           a.addEventListener('focus', on);
-          a.addEventListener('blur', off);
+          if (! options.debug) {
+            a.addEventListener('blur', off);
+          }
 
           a.addEventListener('click', (e) => {
             if (! RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false).classList.contains(OPEN_CLASS)) {

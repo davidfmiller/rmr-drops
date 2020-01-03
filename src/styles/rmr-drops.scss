@@ -25,7 +25,22 @@ ul.rmr-drops {
     position: relative;
     z-index: 1;
 
+    b.arrow {
+      width: 0px;
+      height: 0px;
 
+      display: block;
+
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid transparent;
+
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom-width: 8px;
+      border-bottom-style: solid;
+      border-bottom-color: green;
+    }
 
     & + li {
       margin-left: 1em;
