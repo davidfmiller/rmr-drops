@@ -26,7 +26,7 @@
     options.offset = parseInt(options.offset, 10) ? parseInt(options.offset, 10) : 0;
 
     const
-      uls = document.querySelectorAll('ul.rmr-drops'),
+      uls = options.node ? RMR.Node.getAll(options.node) : document.querySelectorAll('ul.rmr-drops'),
       timeouts = {},
       on = (e) => {
         const li = RMR.Node.ancestor(e.target, 'li', true);
@@ -91,7 +91,10 @@
         }, options.delay);
       };
 
-    // init
+    if (uls.length === 0) {
+      console.error('No rmr-drops to init');
+      return;
+    }
 
     for (const i in uls) {
       if (! RMR.Object.has(uls, i)) { continue; }
