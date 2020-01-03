@@ -3,6 +3,9 @@
 
 ul.rmr-drops {
   justify-content: flex-end;
+  dl {
+    margin: 0;
+  }
 }
 
 ul.rmr-drops dt {
