@@ -33,26 +33,29 @@
         if (RMR.Object.has(timeouts, li.getAttribute('id'))) {
           window.clearTimeout(timeouts[li.getAttribute('id')]);
           delete timeouts[li.getAttribute('id')];
-        } else {
-          li.classList.add(OPEN_CLASS);
+        }
+        li.classList.add(OPEN_CLASS);
 
-          if (options.offset != 0 || options.center) {
-            const
-              drop = li.querySelector(':scope dd'),
-              dt = li.querySelector(':scope dt'),
-              origin = RMR.Node.getRect(dt),
-              dtStyle = window.getComputedStyle(dt),
-              rect = RMR.Node.getRect(drop);
+        const
+          drop = li.querySelector(':scope dd'),
+          target = li.querySelector(':scope dt'),
+          origin = RMR.Node.getRect(target),
+          dtStyle = window.getComputedStyle(target);
+        let
+          rect = RMR.Node.getRect(drop);
 
-            if (options.offset) {
-              drop.style.top = parseInt(dtStyle.height) + options.offset + 'px';
-            }
+        if (options.offset) {
+          drop.style.top = target.height + options.offset + 'px';
+          rect = RMR.Node.getRect(drop);
+        }
 
-            if (options.center) {
-              const left = parseInt(origin.width / 2 - rect.width / 2);
-              drop.style.left = left + 'px';
-            }
-          }
+        if (options.center) {
+          const left = parseInt(origin.width / 2 - rect.width / 2);
+          drop.style.left = left + 'px';
+        }
+
+        if (rect.bottom > window.innerHeight) {
+          drop.style.top = 0 - rect.height + 'px';
         }
 
         const lis = RMR.Node.ancestor(li, 'ul.rmr-drops').querySelectorAll(':scope > li');
