@@ -12,12 +12,20 @@ ul.rmr-drops {
     line-height: 1em;
     margin: 0;
     padding: 0;
+    hr {
+      margin: 0;
+      height: 1px;
+      border: none;
+      padding: 0;
+    }
   }
-  
+
   & > li {
     display: block;
     position: relative;
     z-index: 1;
+
+
 
     & + li {
       margin-left: 1em;
@@ -35,7 +43,7 @@ ul.rmr-drops {
     }
 
     dd {
-      ol {
+      > div  {
         border-radius: 3px;
       }
       min-width: 100%;

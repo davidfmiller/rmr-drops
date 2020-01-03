@@ -48,15 +48,18 @@ ul.rmr-drops dd {
   line-height: 1em;
 }
 
-ul.rmr-drops dd ol {
+ul.rmr-drops dd > div {
   background: #383838;
   box-shadow: 0 3px 3px rgba(0,0,0,0.5);
-  padding: 10px 0;
 }
 
 ul.rmr-drops dd a {
   border-bottom: none;
   padding: 5px 15px;
+}
+
+ul.rmr-drops dd hr {
+  margin: 10px 0;
 }
 
 ul.rmr-drops dd li.active a {
@@ -75,8 +78,12 @@ ul.rmr-drops dd:before {
 
 ul.rmr-drops dd ol {
   margin-top: 0;
+  padding: 10px 0;
 }
 
+ul.rmr-drops dd ol + ol {
+  border-top: 1px solid green;
+}
 
 ul.rmr-drops li:before {
   content: "";
@@ -104,7 +111,6 @@ ul.rmr-drops li:before {
       <li>consume click</li>
     </ul>
 
-
     <ul class="rmr-drops">
       <li>
         <dl>
@@ -114,6 +120,8 @@ ul.rmr-drops li:before {
               <ol>
                 <li><a href="https://vsco.co/davidfmiller">VSCO</a></li>
                 <li><a href="https://www.instagram.com/davidfmiller/">Instagram</a></li>
+                <li><hr/></li>
+                <li><a href="https://flickr.com/photos/davidfmiller">Flickr</a></li>
               </ol>
             </div>
           </dd>
