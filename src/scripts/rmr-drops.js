@@ -38,8 +38,8 @@
 
           if (options.offset != 0 || options.center) {
             const
-              drop = li.querySelector(':scope ol'),
-              a = li.querySelector(':scope > a'),
+              drop = li.querySelector(':scope dd'),
+              a = li.querySelector(':scope dt a'),
               origin = RMR.Node.getRect(a),
               rect = RMR.Node.getRect(drop);
 
@@ -87,7 +87,7 @@
           li.setAttribute('id', RMR.String.guid());
         }
 
-        const links = li.querySelectorAll('ol li a');
+        const links = li.querySelectorAll('dd a');
         for (const j in links) {
           if (! RMR.Object.has(links, j)) { continue; }
 
@@ -103,9 +103,9 @@
         }
 
         li.addEventListener('mouseenter', on);
-        li.querySelector(':scope > a').addEventListener('focus', on);
+        li.querySelector(':scope dt a').addEventListener('focus', on);
         li.addEventListener('mouseleave', off);
-        li.querySelector(':scope > a').addEventListener('blur', off);
+        li.querySelector(':scope dt a').addEventListener('blur', off);
       }
     }
   };

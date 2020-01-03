@@ -28,6 +28,43 @@ ul.rmr-drops {
   justify-content: flex-end;
 }
 
+ul.rmr-drops li {
+  line-height: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rmr-drops dd {
+  padding: 10px 0;
+  margin: 0;
+  line-height: 1em;
+  background: #383838;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.5);
+}
+
+
+ul.rmr-drops dd a {
+  border-bottom: none;
+  padding: 5px 15px;
+}
+
+ul.rmr-drops dd li.active a {
+  background: #2a2a2a;
+}
+ul.rmr-drops dd a:hover {
+  background: #222;
+}
+
+ul.rmr-drops dd:before {
+  content: "";
+  padding: 0;
+  height: 0;
+}
+
+ul.rmr-drops dd ol {
+  margin-top: 0;
+}
+
 ul.rmr-drops li:before {
   content: "";
   padding: 0;
@@ -47,24 +84,34 @@ ul.rmr-drops li:before {
 
 <ul class="rmr-drops">
   <li>
-    <a href="/approach/values">Approach</a>
-
-    <ol>
-      <li><a href="#">Values</a></li>
-      <li><a href="#">Team</a></li>
-    </ol>
+    <dl>
+      <dt><a href="/approach/values">Approach</a></dt>
+      <dd>
+        <ol>
+          <li><a href="#">Values</a></li>
+          <li><a href="#">Team</a></li>
+        </ol>
+      </dd>
+    </dl>
   </li>
   <li>
-    <a href="/projects">Projects</a>
-    <ol>
-        <li><a href="#">The Goodrich Building</a></li>
-    </ol>
+    <dl>
+      <dt><a href="/projects">Projects</a></dt>
+      <dd>
+        <ol>
+          <li class="active"><a href="#">The Goodrich Building</a></li>
+        </ol>
+      </dd>
+    </dl>
   </li>
   <li>
-    <a href="#">Connect</a>
-    <ol>
-      <li><a href="#">Media</a></li>
-    </ol>
+    <dl>
+      <dt><a href="#">Connect</a></dt>
+      <dd>
+        <ol>
+          <li><a href="#">Media</a></li>
+        </ol>
+      </dd>
   </li>
 </ul>
 
@@ -75,7 +122,7 @@ ul.rmr-drops li:before {
   document.addEventListener('DOMContentLoaded', () => {
     Drops({
       delay: 1000,
-      offset: 10,
+      offset: 20,
       center: true
     });
   });

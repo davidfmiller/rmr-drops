@@ -9,20 +9,25 @@ ul.rmr-drops {
     position: relative;
     z-index: 1;
 
+    & + li {
+      margin-left: 1em;
+    }
+
     &.rmr-open,
     &:hover {
-      > ol {
+      dd {
         display: block;
       }
     }
 
-    > ol {
+    dd {
+      border-radius: 3px;
       min-width: 100%;
       display: none;
       position: absolute;
       width: auto;
       left: 0;
-      > li {
+      li {
         white-space: nowrap;
         list-style-type: none;
         a {
