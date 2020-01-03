@@ -40,12 +40,12 @@
           drop = li.querySelector(':scope dd'),
           target = li.querySelector(':scope dt'),
           origin = RMR.Node.getRect(target),
-          dtStyle = window.getComputedStyle(target);
+          targetStyle = window.getComputedStyle(target);
         let
           rect = RMR.Node.getRect(drop);
 
         if (options.offset) {
-          drop.style.top = target.height + options.offset + 'px';
+          drop.style.top = parseInt(targetStyle.height, 10) + options.offset + 'px';
           rect = RMR.Node.getRect(drop);
         }
 
