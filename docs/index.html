@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>rmr-drops</title>
+  <link rel="stylesheet" type="text/css" href="https://davidfmiller.github.io/man/man.css">
+
+  <link rel="stylesheet" type="text/css" href="build/rmr-drops.css?bust=0">
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="mask-icon" href="favicon.svg" color="#d0021b">
+
+  <meta property="og:title" content="rmr-drops">
+  <meta property="og:description" content="My last set of dropdowns">
+  <meta property="og:email" content="davidfmiller@me.com">
+  <meta property="og:url" content="https://davidfmiller.github.io/rmr-drops">
+  <meta property="fb:admins" content="eldaverino">
+  <meta property="og:image" content="./og-image.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+body > div:first-child ul {
+  justify-content: flex-end;
+}
+
+ul.rmr-drops li:before {
+  content: "";
+  padding: 0;
+}
+  </style>
+
+  <!-- styles for this page
+  <link rel="stylesheet" type="text/css" href="index.css">
+  -->
+</head>
+<body>
+
+<div>
+<ul class="rmr-drops">
+  <li class="approach" id="rmr-guid-70-446">
+    <a href="/approach/values">Approach</a>
+    <ol>
+      <li><a href="/approach/values">Values</a></li>
+      <li><a href="/approach/team">Team</a></li>
+    </ol>
+  </li>
+  <li class="projects" id="rmr-guid-3-33">
+    <a href="/projects">Projects</a>
+    <ol>
+        <li><a href="//localhost:1313/projects/1402-tacoma/">1402 Tacoma Ave</a></li>
+        <li><a href="//localhost:1313/projects/analog-pdx/">Analog PDX</a></li>
+        <li><a href="//localhost:1313/projects/analog-tacoma/">Analog Tacoma</a></li>
+        <li><a href="//localhost:1313/projects/bridgetown/">Bridgetown</a></li>
+        <li><a href="//localhost:1313/projects/brookland/">brookLAND</a></li>
+        <li><a href="//localhost:1313/projects/dean-river/">Dean River</a></li>
+        <li><a href="//localhost:1313/projects/fernhill-crossing/">Fernhill Crossing</a></li>
+        <li><a href="//localhost:1313/projects/margot/">Margot</a></li>
+        <li><a href="//localhost:1313/projects/nomad/">Nomad</a></li>
+        <li><a href="//localhost:1313/projects/single-family/">Single Family</a></li>
+        <li><a href="//localhost:1313/projects/society-42/">Society 42</a></li>
+        <li><a href="//localhost:1313/projects/society-overlook/">Society Overlook</a></li>
+        <li><a href="//localhost:1313/projects/society-rcp/">Society RCP</a></li>
+        <li><a href="//localhost:1313/projects/barley-pod/">The Barley Pod</a></li>
+        <li><a href="//localhost:1313/projects/goodrich/">The Goodrich Building</a></li>
+    </ol>
+  </li>
+  <li class="connect" id="rmr-guid-39-867">
+    <a href="/connect/contact">Connect</a>
+    <ol>
+      <li><a href="/connect/contact">Contact</a></li>
+      <li><a href="/connect/investors">Investors</a></li>
+      <li><a href="/connect/media">Media</a></li>
+    </ol>
+  </li>
+</ul>
+</div>
+  <div id="man">
+    <h1><i>🔧</i> rmr-drops</h1>
+
+  <script src="https://davidfmiller.github.io/man/man.js"></script>
+  <script src="build/rmr-drops.bundle.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    window.console.log('🏢');
+    Drops({
+      delay: 1000,
+      offset: 10,
+      center: true
+    });
+  });
+  </script>
+
+
+</html>

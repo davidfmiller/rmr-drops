@@ -1,0 +1,35 @@
+{
+  "name": "rmr-drops",
+  "version": "0.0.1",
+  "description": "My last set of dropdowns",
+  "url": "https://davidfmiller.github.io/rmr-drops/",
+  "license": "ISC",
+  "author": {
+    "name": "davidfmiller",
+    "url": "https://readmeansrun.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidfmiller/rmr-drops.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidfmiller/rmr-drops/issues"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.1.2",
+    "grunt": "^1.0.4",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^3.3.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "mocha": "^4.1.0",
+    "uglify-es": "^3.3.4",
+    "webpack": "^4.41.5"
+  },
+  "dependencies": {
+    "rmr-util": "^1.1.41"
+  }
+}

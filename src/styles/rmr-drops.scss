@@ -1,0 +1,36 @@
+
+ul.rmr-drops {
+  display: flex;
+  a {
+    display: block;
+  }
+  & > li {
+    display: block;
+    position: relative;
+    z-index: 1;
+
+    &.rmr-open,
+    &:hover {
+      > ol {
+        display: block;
+      }
+    }
+
+    > ol {
+      min-width: 100%;
+      display: none;
+      position: absolute;
+      width: auto;
+      left: 0;
+      > li {
+        white-space: nowrap;
+        list-style-type: none;
+        a {
+          &:hover {
+          }
+        }
+      }
+    }
+  }
+}
+
