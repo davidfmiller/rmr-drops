@@ -74,6 +74,8 @@
         }, options.delay);
       };
 
+    // init
+
     for (const i in uls) {
       if (! RMR.Object.has(uls, i)) { continue; }
       const
@@ -82,8 +84,9 @@
 
       for (const j in lis) {
         if (! RMR.Object.has(lis, j)) { continue; }
-
         const li = lis[j];
+
+        // ensure li has unique id
         if (! li.getAttribute('id')) {
           li.setAttribute('id', RMR.String.guid());
         }
@@ -103,10 +106,22 @@
           });
         }
 
+        const a = li.querySelector(':scope dt a');
         li.addEventListener('mouseenter', on);
-        li.querySelector(':scope dt a').addEventListener('focus', on);
         li.addEventListener('mouseleave', off);
-        li.querySelector(':scope dt a').addEventListener('blur', off);
+        if (a) {
+          a.addEventListener('focus', on);
+          a.addEventListener('blur', off);
+
+          a.addEventListener('click', (e) => {
+            if (! RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false).classList.contains(OPEN_CLASS)) {
+              console.log('nope');
+              e.preventDefault();
+            }
+            // proceed
+          })
+
+        }
       }
     }
   };
