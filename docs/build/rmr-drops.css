@@ -1,0 +1,1 @@
+ul.rmr-drops{display:flex}ul.rmr-drops a{display:block}ul.rmr-drops>li{display:block;position:relative;z-index:1}ul.rmr-drops>li.rmr-open>ol,ul.rmr-drops>li:hover>ol{display:block}ul.rmr-drops>li>ol{min-width:100%;display:none;position:absolute;width:auto;left:0}ul.rmr-drops>li>ol>li{white-space:nowrap;list-style-type:none}
