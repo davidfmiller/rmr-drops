@@ -28,6 +28,23 @@ ul.rmr-drops {
   justify-content: flex-end;
 }
 
+ul.rmr-drops li.active dt a {
+/*  color: teal; */
+}
+
+ul.rmr-drops dt {
+  padding: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
+}
+
+ul.rmr-drops > li.active dt {
+ background: rgba(255,255,255,0.2);
+}
+
+ul.rmr-drops dt a {
+}
+
 ul.rmr-drops li {
   line-height: 1em;
   margin: 0;
@@ -35,13 +52,16 @@ ul.rmr-drops li {
 }
 
 ul.rmr-drops dd {
-  padding: 10px 0;
   margin: 0;
+  padding: 0;
   line-height: 1em;
-  background: #383838;
-  box-shadow: 0 3px 3px rgba(0,0,0,0.5);
 }
 
+ul.rmr-drops dd ol {
+  background: #383838;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.5);
+  padding: 10px 0;
+}
 
 ul.rmr-drops dd a {
   border-bottom: none;
@@ -65,6 +85,7 @@ ul.rmr-drops dd ol {
   margin-top: 0;
 }
 
+
 ul.rmr-drops li:before {
   content: "";
   padding: 0;
@@ -81,36 +102,50 @@ ul.rmr-drops li:before {
 </div>
   <div id="man">
     <h1><i>🔧</i> rmr-drops</h1>
+    <p>My last version of dropdowns.</p>
 
 <ul class="rmr-drops">
   <li>
     <dl>
-      <dt><a href="/approach/values">Approach</a></dt>
+      <dt><a href="#">Photos</a></dt>
       <dd>
-        <ol>
-          <li><a href="#">Values</a></li>
-          <li><a href="#">Team</a></li>
-        </ol>
+        <div>
+          <ol>
+            <li><a href="https://dfm.photography">DFM</a></li>
+            <li><a href="https://vsco.co/davidfmiller">VSCO</a></li>
+            <li><a href="https://www.instagram.com/davidfmiller/">Instagram</a></li>
+          </ol>
+        </div>
+      </dd>
+    </dl>
+  </li>
+  <li class="active">
+    <dl>
+      <dt><a href="#">Projects</a></dt>
+      <dd>
+        <div>
+          <ol>
+            <li class="active"><a href="https://github.com/davidfmiller/rmr-drops">rmr-drops</a></li>
+            <li><a href="https://davidfmiller.github.io/modal/">modal</a></li>
+            <li><a href="https://readmeansrun.com/router">Router</a></li>
+            <li><a href="https://readmeansrun.com/pictographs">Pictographs</a></li>
+            <li><a href="https://apps.apple.com/ca/app/mirror/id1475194002?mt=12">Mirror</a></li>
+          </ol>
+        </div>
       </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><a href="/projects">Projects</a></dt>
+      <dt><a href="#">Socials</a></dt>
       <dd>
-        <ol>
-          <li class="active"><a href="#">The Goodrich Building</a></li>
-        </ol>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><a href="#">Connect</a></dt>
-      <dd>
-        <ol>
-          <li><a href="#">Media</a></li>
-        </ol>
+        <div>
+          <ol>
+            <li><a href="https://github.com/davidfmiller">GitHub</a></li>
+            <li><a href="https://twitter.com/eldaverino">Twitter</a></li>
+            <li><a href="http://www.linkedin.com/in/davidfmiller">LinkedIn</a></li>
+          </ol>
+        </div>
       </dd>
   </li>
 </ul>
@@ -122,8 +157,8 @@ ul.rmr-drops li:before {
   document.addEventListener('DOMContentLoaded', () => {
     Drops({
       delay: 1000,
-      offset: 20,
-      center: true
+      offset: 15
+//      center: true
     });
   });
   </script>

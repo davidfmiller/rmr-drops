@@ -21,7 +21,9 @@ ul.rmr-drops {
     }
 
     dd {
-      border-radius: 3px;
+      ol {
+        border-radius: 3px;
+      }
       min-width: 100%;
       display: none;
       position: absolute;

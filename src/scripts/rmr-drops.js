@@ -39,12 +39,13 @@
           if (options.offset != 0 || options.center) {
             const
               drop = li.querySelector(':scope dd'),
-              a = li.querySelector(':scope dt a'),
-              origin = RMR.Node.getRect(a),
+              dt = li.querySelector(':scope dt'),
+              origin = RMR.Node.getRect(dt),
+              dtStyle = window.getComputedStyle(dt),
               rect = RMR.Node.getRect(drop);
 
             if (options.offset) {
-              drop.style.top = parseInt(origin.height) + options.offset + 'px';
+              drop.style.top = parseInt(dtStyle.height) + options.offset + 'px';
             }
 
             if (options.center) {
