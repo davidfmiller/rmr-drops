@@ -31,14 +31,8 @@
 <body>
 
 <div>
+
 </div>
-  <div id="man">
-    <h1><i>💬</i> rmr-drops</h1>
-    <p>The last set of dropdowns I’ll ever write.</p>
-    <h2>Todo</h2>
-    <ul>
-      <li>docs</li>
-    </ul>
 
     <ul class="rmr-drops">
       <li>
@@ -88,18 +82,41 @@
     </ul>
 
 
+  <div id="man">
+    <h1><i>💬</i> <a href="https://github.com/davidfmiller/rmr-drops">rmr-drops</a></h1>
+    <p>The last set of dropdowns I’ll ever write.</p>
+    <h2>Todo</h2>
+    <dl>
+      <dt><code>hover</code></dt>
+      <dd>if <code>true</code>, dropdowns will appear when hovered over;</dd>
+      <dd>if <code>false</code>, dropdowns will appear when clicked</dd>
+
+      <dt><code>arrow</code></dt>
+      <dd>if <code>true</code>, dropdowns will have a little arrow element attaching them to the target</dd>
+
+      <dt><code>center</code></dt>
+      <dd>if <code>true</code>, dropdowns be centered beneath their associated element</dd>
+
+      <dt><code>offset</code></dt>
+      <dd>how many pixels the dropdown should appear above/below their associated element</dd>
+
+      <dt><code>delay</code></dt>
+      <dd>how many milliseconds the dropdown should stick around after mousing out (only applicable when <code>hover</code> is <code>true</code>)</dd>
+
+    </dl>
+
   <script src="https://davidfmiller.github.io/man/man.js"></script>
   <script src="./build/rmr-drops.bundle.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     Drops({
       node: 'ul.rmr-drops',
-      debug: false,
-      hover: false,
+//      debug: false,
+      hover: true,
       delay: 1000,
-      offset: 3,
+      offset: 0,
       arrow: true,
-      center: true
+      center: false
     });
   });
   </script>
