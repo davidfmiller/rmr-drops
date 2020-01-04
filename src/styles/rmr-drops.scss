@@ -31,25 +31,30 @@ ul.rmr-drops {
 
       display: block;
 
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 8px solid transparent;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 0 solid transparent;
+      border-bottom: 7px solid green;
 
-      border-left-color: transparent;
-      border-right-color: transparent;
-      border-bottom-width: 8px;
-      border-bottom-style: solid;
-      border-bottom-color: green;
+      &.rmr-bottom {
+        border-top-color: red;
+        border-bottom-width: 0;
+        border-top-width: 7px;
+      }
     }
 
     & + li {
       margin-left: 1em;
     }
 
-    &.rmr-open,
-    &:hover {
+    &.rmr-open {
       dd {
         display: block;
+      }
+      &.rmr-show {
+        dd {
+          opacity: 1;
+        }
       }
     }
 
@@ -58,8 +63,14 @@ ul.rmr-drops {
     }
 
     dd {
+
+      opacity: 0;
+      transition: opacity $rmr-transition-duration-short;
+
       > div  {
         border-radius: 3px;
+//        position: absolute;
+//        top: 7px;
       }
       min-width: 100%;
       display: none;

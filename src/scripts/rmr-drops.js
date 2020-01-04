@@ -15,8 +15,12 @@
   RMR = require('rmr-util'),
 
 //  MOBILE = RMR.Browser.isTouch(),
-
-  OPEN_CLASS = 'rmr-open';
+  ARROW = {
+    size: 7,
+    class: 'arrow'
+  },
+  OPEN_CLASS = 'rmr-open',
+  SHOW_CLASS = 'rmr-show';
 
   const Drops = function(options) {
 
@@ -33,21 +37,39 @@
         if (RMR.Object.has(timeouts, li.getAttribute('id'))) {
           window.clearTimeout(timeouts[li.getAttribute('id')]);
           delete timeouts[li.getAttribute('id')];
+//           return;
         }
+
         li.classList.add(OPEN_CLASS);
+        window.setTimeout(function() { li.classList.add(SHOW_CLASS) }, 100);
 
         const
           drop = li.querySelector(':scope dd'),
           target = li.querySelector(':scope dt'),
           origin = RMR.Node.getRect(target),
-          targetStyle = window.getComputedStyle(target);
+          targetStyle = window.getComputedStyle(target),
+          arrowColor = window.getComputedStyle(drop.querySelector(':scope > div')).backgroundColor;
+
+        let arrow;
+        if (options.arrow) {
+          let n;
+          while (n = drop.querySelector('b')) {
+            RMR.Node.remove(n);
+          }
+          arrow = RMR.Node.create('b', { class: 'arrow' });
+          arrow.style.borderBottomColor = arrowColor;
+          drop.appendChild(arrow);
+          drop.insertBefore(arrow, drop.firstChild);
+          arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - 3.5 + 'px'; 
+        }
+
         let
           rect = RMR.Node.getRect(drop);
 
-        if (options.offset) {
+//        if (options.offset) {
           drop.style.top = parseInt(targetStyle.height, 10) + options.offset + 'px';
           rect = RMR.Node.getRect(drop);
-        }
+//        }
 
         if (options.center) {
           const left = parseInt(origin.width / 2 - rect.width / 2);
@@ -67,9 +89,22 @@
           rect = RMR.Node.getRect(drop);
         }
 
-
         if (rect.bottom > window.innerHeight) {
-          drop.style.top = 0 - rect.height + 'px';
+          if (options.arrow) {
+            RMR.Node.remove(arrow);
+            arrow.classList.add('rmr-bottom');
+            arrow.style.borderTopColor = arrowColor;
+            drop.appendChild(arrow);
+            rect = RMR.Node.getRect(drop);
+          }
+
+          drop.style.top = 0 - rect.height - options.offset + 'px';
+//           drop.classList.remove('rmr-down');
+//           drop.classList.add('rmr-up');
+
+        } else {
+//           drop.classList.add('rmr-down');
+//           drop.classList.remove('rmr-up');
         }
 
         const lis = RMR.Node.ancestor(li, 'ul.rmr-drops').querySelectorAll(':scope > li');
@@ -82,6 +117,8 @@
       },
       hide = (target) => {
         target.classList.remove(OPEN_CLASS);
+        target.classList.remove(SHOW_CLASS);
+        window.clearTimeout(timeouts[target.getAttribute('id')]);
         delete timeouts[target.getAttribute('id')];
       },
       off = (e) => {
@@ -98,9 +135,23 @@
 
     for (const i in uls) {
       if (! RMR.Object.has(uls, i)) { continue; }
+
       const
         ul = uls[i],
         lis = ul.querySelectorAll(':scope > li');
+
+      if (! options.hover) {
+        document.body.addEventListener('click', (e) => {
+          const ul = RMR.Node.ancestor(e.target, 'ul.rmr-drops', false);
+          if (! ul) {
+            for (const i in lis) {
+              if (! RMR.Object.has(lis, i)) { continue; }
+              hide(lis[i]);
+            }
+          }
+        });
+      }
+
 
       for (const j in lis) {
         if (! RMR.Object.has(lis, j)) { continue; }
@@ -127,24 +178,29 @@
         }
 
         const a = li.querySelector(':scope dt a');
-        li.addEventListener('mouseenter', on);
-        if (! options.debug) {
-          li.addEventListener('mouseleave', off);
+        if (options.hover) {
+          li.addEventListener('mouseenter', on);
+          if (! options.debug) {
+            li.addEventListener('mouseleave', off);
+          }
         }
+        else {
+          if (a) {
+            a.addEventListener('click', (e) => {
+              const li = RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false);
+              if (! li.classList.contains(OPEN_CLASS)) {
+                e.preventDefault();
+                on(e);
+              }
+            });
+          }
+        }
+
         if (a) {
           a.addEventListener('focus', on);
           if (! options.debug) {
             a.addEventListener('blur', off);
           }
-
-          a.addEventListener('click', (e) => {
-            if (! RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false).classList.contains(OPEN_CLASS)) {
-              console.log('nope');
-              e.preventDefault();
-            }
-            // proceed
-          })
-
         }
       }
     }
