@@ -34,10 +34,9 @@ ul.rmr-drops {
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
       border-top: 0 solid transparent;
-      border-bottom: 7px solid green;
+      border-bottom: 7px solid red; /* set in js */
 
       &.rmr-bottom {
-        border-top-color: red;
         border-bottom-width: 0;
         border-top-width: 7px;
       }

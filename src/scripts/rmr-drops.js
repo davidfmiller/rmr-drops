@@ -14,7 +14,7 @@
   const
   RMR = require('rmr-util'),
 
-//  MOBILE = RMR.Browser.isTouch(),
+  MOBILE = RMR.Browser.isTouch(),
   ARROW = {
     size: 7,
     class: 'arrow'
@@ -178,6 +178,11 @@
         }
 
         const a = li.querySelector(':scope dt a');
+        a.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          on(e);
+        })
+
         if (options.hover) {
           li.addEventListener('mouseenter', on);
           if (! options.debug) {
@@ -188,7 +193,7 @@
           if (a) {
             a.addEventListener('click', (e) => {
               const li = RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false);
-              if (! li.classList.contains(OPEN_CLASS)) {
+              if (! li.classList.contains(OPEN_CLASS) || MOBILE) {
                 e.preventDefault();
                 on(e);
               }
