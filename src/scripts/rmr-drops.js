@@ -1,4 +1,4 @@
-/* global document,window,module,console, require */
+/* global  */
 
 
 /*
@@ -53,14 +53,14 @@
         let arrow;
         if (options.arrow) {
           let n;
-          while (n = drop.querySelector('b')) {
+          while ((n = drop.querySelector('b')) !== null ) {
             RMR.Node.remove(n);
           }
-          arrow = RMR.Node.create('b', { class: 'arrow' });
+          arrow = RMR.Node.create('b', { class: ARROW.class });
           arrow.style.borderBottomColor = arrowColor;
           drop.appendChild(arrow);
           drop.insertBefore(arrow, drop.firstChild);
-          arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - 3.5 + 'px'; 
+          arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (ARROW.size / 2) + 'px'; 
         }
 
         let
