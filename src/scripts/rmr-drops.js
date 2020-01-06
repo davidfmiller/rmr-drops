@@ -2,7 +2,7 @@
 
 
 /*
- * drops
+ * rmr-drops
  * © 2020 David Miller
  * https://readmeansrun.com
  */
@@ -22,6 +22,11 @@
   OPEN_CLASS = 'rmr-open',
   SHOW_CLASS = 'rmr-show';
 
+  /**
+    
+     @param options {Object} - 
+   
+   */
   const Drops = function(options) {
 
     if (! parseInt(options.delay, 10)) {
@@ -31,7 +36,11 @@
 
     const
       uls = options.node ? RMR.Node.getAll(options.node) : document.querySelectorAll('ul.rmr-drops'),
+
+      // hash of all 
       timeouts = {},
+
+      // event handler to open a dropdown 
       on = (e) => {
         const li = RMR.Node.ancestor(e.target, 'li', true);
         if (RMR.Object.has(timeouts, li.getAttribute('id'))) {
@@ -66,10 +75,8 @@
         let
           rect = RMR.Node.getRect(drop);
 
-//        if (options.offset) {
-          drop.style.top = parseInt(targetStyle.height, 10) + options.offset + 'px';
-          rect = RMR.Node.getRect(drop);
-//        }
+        drop.style.top = parseInt(targetStyle.height, 10) + options.offset + 'px';
+        rect = RMR.Node.getRect(drop);
 
         if (options.center) {
           const left = parseInt(origin.width / 2 - rect.width / 2);
@@ -115,12 +122,15 @@
           hide(lis[i]);
         }
       },
+
+      // force a dropdown to close
       hide = (target) => {
         target.classList.remove(OPEN_CLASS);
         target.classList.remove(SHOW_CLASS);
         window.clearTimeout(timeouts[target.getAttribute('id')]);
         delete timeouts[target.getAttribute('id')];
       },
+      // event handler to close a dropdown after the designated period of time 
       off = (e) => {
         const li = RMR.Node.ancestor(e.target, 'li', true);
         timeouts[li.getAttribute('id')] = window.setTimeout(() => {
@@ -140,7 +150,7 @@
         ul = uls[i],
         lis = ul.querySelectorAll(':scope > li');
 
-      if (! options.hover) {
+      if (! options.hover || MOBILE) {
         document.body.addEventListener('click', (e) => {
           const ul = RMR.Node.ancestor(e.target, 'ul.rmr-drops', false);
           if (! ul) {
@@ -152,7 +162,7 @@
         });
       }
 
-
+      // all 
       for (const j in lis) {
         if (! RMR.Object.has(lis, j)) { continue; }
         const li = lis[j];
@@ -162,6 +172,7 @@
           li.setAttribute('id', RMR.String.guid());
         }
 
+        // add listeners to all links in the dropdown list to keep dropdown open 
         const links = li.querySelectorAll('dd a');
         for (const j in links) {
           if (! RMR.Object.has(links, j)) { continue; }
@@ -191,6 +202,7 @@
         }
         else {
           if (a) {
+            // if the target is clicked and its dropdown is NOT open (or we're on mobile where there is no hover event)
             a.addEventListener('click', (e) => {
               const li = RMR.Node.ancestor(e.target, 'li', false);
               if (! li.classList.contains(OPEN_CLASS) || MOBILE) {
