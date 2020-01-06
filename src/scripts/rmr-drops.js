@@ -192,7 +192,7 @@
         else {
           if (a) {
             a.addEventListener('click', (e) => {
-              const li = RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false);
+              const li = RMR.Node.ancestor(e.target, 'li', false);
               if (! li.classList.contains(OPEN_CLASS) || MOBILE) {
                 e.preventDefault();
                 on(e);
