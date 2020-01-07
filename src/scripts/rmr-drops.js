@@ -211,8 +211,21 @@
           if (a) {
             // if the target is clicked and its dropdown is NOT open (or we're on mobile where there is no hover event)
             a.addEventListener('click', (e) => {
-              const li = RMR.Node.ancestor(e.target, 'li', false);
-              if (! li.classList.contains(ATTRS.open)) {
+              const
+                li = RMR.Node.ancestor(e.target, 'li', false),
+                isOpen = li.classList.contains(ATTRS.open);
+
+              if (isOpen) {
+                return;
+              }
+    
+              if (MOBILE && ! isOpen) {
+                e.preventDefault();
+                on(e);
+                return;
+              }
+
+              if (options.hover || isOpen) {
                 e.preventDefault();
                 on(e);
               }
