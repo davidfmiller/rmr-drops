@@ -22,7 +22,7 @@
   OPEN_CLASS = 'rmr-open',
   SHOW_CLASS = 'rmr-show';
 
-console.log(MOBILE);
+//console.log(MOBILE);
 
   /**
     
@@ -87,8 +87,8 @@ console.log(MOBILE);
         }
 
         if (rect.right >= window.innerWidth) {
-          console.log(rect.right, window.innerWidth);
-          console.log('!');
+//           console.log(rect.right, window.innerWidth);
+//           console.log('!');
           drop.style.left = (window.innerWidth - rect.right - 15) + 'px';
           rect = RMR.Node.getRect(drop);
         }
@@ -191,11 +191,6 @@ console.log(MOBILE);
         }
 
         const a = li.querySelector(':scope dt a');
-//         a.addEventListener('touchstart', (e) => {
-//         console.log('touch start');
-//           e.preventDefault();
-//           on(e);
-//         })
 
         if (options.hover) {
           li.addEventListener('mouseenter', on);
@@ -207,7 +202,6 @@ console.log(MOBILE);
           if (a) {
             // if the target is clicked and its dropdown is NOT open (or we're on mobile where there is no hover event)
             a.addEventListener('click', (e) => {
-            console.log('a click');
               const li = RMR.Node.ancestor(e.target, 'li', false);
               if (! li.classList.contains(OPEN_CLASS)) {
                 e.preventDefault();
