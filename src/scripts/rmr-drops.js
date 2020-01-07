@@ -16,7 +16,7 @@
 
   MOBILE = RMR.Browser.isTouch(),
   ARROW = {
-    size: 7,
+    size: 5,
     class: 'arrow'
   },
   OPEN_CLASS = 'rmr-open',
@@ -65,11 +65,19 @@
         let arrow;
         if (options.arrow) {
           let n;
-          while ((n = drop.querySelector('b')) !== null ) {
+
+          // remove any existing arrows
+          while ((n = drop.querySelector('b.' + ARROW.class)) !== null ) {
             RMR.Node.remove(n);
           }
           arrow = RMR.Node.create('b', { class: ARROW.class });
-          arrow.style.borderBottomColor = arrowColor;
+          RMR.Node.setStyles(arrow, {
+            borderBottomColor: arrowColor,
+            borderLeftWidth: ARROW.size + 'px',
+            borderRightWidth = ARROW.size + 'px',
+            borderBottomWidth = ARROW.size + 'px'
+          });
+
           drop.insertBefore(arrow, drop.firstChild);
           arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (ARROW.size / 2) + 'px'; 
         }
@@ -99,7 +107,11 @@
           if (options.arrow) {
             RMR.Node.remove(arrow);
             arrow.classList.add('rmr-bottom');
-            arrow.style.borderTopColor = arrowColor;
+            RMR.Node.setStyles(arrow, {
+              borderTopColor: arrowColor;
+              borderTopWidth: ARROW.size + 'px';
+              borderBottomWidth: 0;
+            });
             drop.appendChild(arrow);
             rect = RMR.Node.getRect(drop);
           }
