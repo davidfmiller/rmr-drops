@@ -16,6 +16,7 @@
 
   MOBILE = RMR.Browser.isTouch(),
   ATTRS = {
+    drops: 'rmr-drops',
     arrow: 'rmr-arrow',
     open: 'rmr-open',
     show: 'rmr-show'
@@ -37,7 +38,7 @@
     options.arrow = parseInt(options.arrow, 10) > 0 ? parseInt(options.arrow, 10) : 0;
 
     const
-      uls = options.node ? RMR.Node.getAll(options.node) : document.querySelectorAll('ul.rmr-drops'),
+      uls = options.node ? RMR.Node.getAll(options.node) : document.querySelectorAll('ul.' + ATTRS.drops),
 
       // hash of all timeout references 
       timeouts = {},
@@ -122,7 +123,7 @@
         }
 
         // loop through all other dropdowns in this group and hide them 
-        const lis = RMR.Node.ancestor(li, 'ul.rmr-drops').querySelectorAll(':scope > li');
+        const lis = RMR.Node.ancestor(li, 'ul.' + ATTRS.drops).querySelectorAll(':scope > li');
         for (const i in lis) {
           if (! RMR.Object.has(lis, i) || lis[i].getAttribute('id') == li.getAttribute('id')) {
             continue;
@@ -138,6 +139,7 @@
         window.clearTimeout(timeouts[target.getAttribute('id')]);
         delete timeouts[target.getAttribute('id')];
       },
+
       // event handler to close a dropdown after the designated period of time 
       off = (e) => {
         const li = RMR.Node.ancestor(e.target, 'li', true);
@@ -146,10 +148,12 @@
         }, options.delay);
       };
 
+    // sanity check before proceeding with initialization
     if (uls.length === 0) {
       console.error('No rmr-drops to init');
       return;
     }
+
 
     for (const i in uls) {
       if (! RMR.Object.has(uls, i)) { continue; }
@@ -161,7 +165,7 @@
       // add event listener to dismiss popovers when document.body is clicked on
       if (! options.hover || MOBILE) {
         document.body.addEventListener('click', (e) => {
-          const ul = RMR.Node.ancestor(e.target, 'ul.rmr-drops', false);
+          const ul = RMR.Node.ancestor(e.target, 'ul.' + ATTRS.drops, false);
           if (! ul) {
             for (const i in lis) {
               if (! RMR.Object.has(lis, i)) { continue; }
