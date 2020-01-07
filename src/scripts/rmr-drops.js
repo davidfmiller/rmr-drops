@@ -15,11 +15,16 @@
   RMR = require('rmr-util'),
 
   MOBILE = RMR.Browser.isTouch(),
-  ARROW = {
-    class: 'arrow'
-  },
-  OPEN_CLASS = 'rmr-open',
-  SHOW_CLASS = 'rmr-show';
+  ATTRS = {
+    arrow: 'arrow',
+    open: 'rmr-open',
+    show: 'rmr-show'
+  };
+//   ARROW = {
+//     class: 'arrow'
+//   },
+  //OPEN_CLASS = 'rmr-open',
+//  SHOW_CLASS = 'rmr-show';
 
 //console.log(MOBILE);
 
@@ -52,8 +57,8 @@
           delete timeouts[li.getAttribute('id')];
         }
 
-        li.classList.add(OPEN_CLASS);
-        window.setTimeout(function() { li.classList.add(SHOW_CLASS) }, ! options.hover || MOBILE || e.type === 'focus' ? 0 : 1000 );
+        li.classList.add(ATTRS.open);
+        window.setTimeout(function() { li.classList.add(ATTRS.show) }, ! options.hover || MOBILE || e.type === 'focus' ? 0 : 250 );
 
         const
           drop = li.querySelector(':scope dd'),
@@ -67,10 +72,10 @@
           let n;
 
           // remove any existing arrows
-          while ((n = drop.querySelector('b.' + ARROW.class)) !== null ) {
+          while ((n = drop.querySelector('b.' + ATTRS.arrow)) !== null ) {
             RMR.Node.remove(n);
           }
-          arrow = RMR.Node.create('b', { class: ARROW.class });
+          arrow = RMR.Node.create('b', { class: ATTRS.arrow });
           RMR.Node.setStyles(arrow, {
             borderBottomColor: arrowColor,
             borderLeftWidth: options.arrow + 'px',
@@ -130,8 +135,8 @@
 
       // force a dropdown to close
       hide = (target) => {
-        target.classList.remove(OPEN_CLASS);
-        target.classList.remove(SHOW_CLASS);
+        target.classList.remove(ATTRS.open);
+        target.classList.remove(ATTRS.show);
         window.clearTimeout(timeouts[target.getAttribute('id')]);
         delete timeouts[target.getAttribute('id')];
       },
@@ -205,7 +210,7 @@
             // if the target is clicked and its dropdown is NOT open (or we're on mobile where there is no hover event)
             a.addEventListener('click', (e) => {
               const li = RMR.Node.ancestor(e.target, 'li', false);
-              if (! li.classList.contains(OPEN_CLASS)) {
+              if (! li.classList.contains(ATTRS.open)) {
                 e.preventDefault();
                 on(e);
               }
