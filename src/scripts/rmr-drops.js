@@ -152,6 +152,7 @@
         ul = uls[i],
         lis = ul.querySelectorAll(':scope > li');
 
+      // add event listener to dismiss popovers when document.body is clicked on
       if (! options.hover || MOBILE) {
         document.body.addEventListener('click', (e) => {
           const ul = RMR.Node.ancestor(e.target, 'ul.rmr-drops', false);
@@ -188,15 +189,14 @@
             const target = RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false); 
             off({ target: target });
           });
+
         }
 
         const a = li.querySelector(':scope dt a');
 
         if (options.hover) {
           li.addEventListener('mouseenter', on);
-          if (! options.debug) {
-            li.addEventListener('mouseleave', off);
-          }
+          li.addEventListener('mouseleave', off);
         }
         else {
           if (a) {
@@ -211,11 +211,10 @@
           }
         }
 
+        // add listeners to target link
         if (a) {
           a.addEventListener('focus', on);
-          if (! options.debug) {
-            a.addEventListener('blur', off);
-          }
+          a.addEventListener('blur', off);
         }
       }
     }
