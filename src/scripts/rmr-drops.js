@@ -69,7 +69,7 @@
           }
           arrow = RMR.Node.create('b', { class: ARROW.class });
           arrow.style.borderBottomColor = arrowColor;
-          drop.appendChild(arrow);
+//          drop.appendChild(arrow);
           drop.insertBefore(arrow, drop.firstChild);
           arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (ARROW.size / 2) + 'px'; 
         }
