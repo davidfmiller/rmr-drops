@@ -3,7 +3,6 @@
 (function() {
 
   'use strict';
-
-  window.Drops = require('./src/scripts/rmr-drops.js');
+  window.Drops = require('./rmr-drops.js');
 
 })();

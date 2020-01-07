@@ -4,7 +4,7 @@ const
     webpack = require('webpack');
 
 const config = {
-  entry: './build.js',
+  entry: './src/scripts/build.js',
   output: {
     path: path.resolve(__dirname, 'docs/build/'),
     filename: 'rmr-drops.bundle.js'
