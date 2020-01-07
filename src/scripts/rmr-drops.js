@@ -120,6 +120,10 @@
           }
 
           drop.style.top = 0 - rect.height - options.offset + 'px';
+          rect = RMR.Node.getRect(drop);
+          if (rect.top < 0) {
+            drop.style.top = 0 - rect.top + 'px';
+          }
         }
 
         // loop through all other dropdowns in this group and hide them 
@@ -215,17 +219,7 @@
                 li = RMR.Node.ancestor(e.target, 'li', false),
                 isOpen = li.classList.contains(ATTRS.open);
 
-              if (isOpen) {
-                return;
-              }
-    
-              if (MOBILE && ! isOpen) {
-                e.preventDefault();
-                on(e);
-                return;
-              }
-
-              if (options.hover || isOpen) {
+              if ((MOBILE && ! isOpen) || (options.hover || ! isOpen)) {
                 e.preventDefault();
                 on(e);
               }
