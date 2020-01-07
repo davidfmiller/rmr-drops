@@ -145,6 +145,18 @@
       return;
     }
 
+    if (! options.hover || MOBILE) {
+      document.body.addEventListener('click', (e) => {
+        const ul = RMR.Node.ancestor(e.target, 'ul.rmr-drops', false);
+        if (! ul) {
+          for (const i in lis) {
+            if (! RMR.Object.has(lis, i)) { continue; }
+            hide(lis[i]);
+          }
+        }
+      });
+    }
+
     for (const i in uls) {
       if (! RMR.Object.has(uls, i)) { continue; }
 
@@ -152,17 +164,6 @@
         ul = uls[i],
         lis = ul.querySelectorAll(':scope > li');
 
-      if (! options.hover || MOBILE) {
-        document.body.addEventListener('click', (e) => {
-          const ul = RMR.Node.ancestor(e.target, 'ul.rmr-drops', false);
-          if (! ul) {
-            for (const i in lis) {
-              if (! RMR.Object.has(lis, i)) { continue; }
-              hide(lis[i]);
-            }
-          }
-        });
-      }
 
       // all 
       for (const j in lis) {
