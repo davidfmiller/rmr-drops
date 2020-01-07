@@ -16,17 +16,12 @@
 
   MOBILE = RMR.Browser.isTouch(),
   ATTRS = {
-    arrow: 'arrow',
+    arrow: 'rmr-arrow',
     open: 'rmr-open',
     show: 'rmr-show'
   };
-//   ARROW = {
-//     class: 'arrow'
-//   },
-  //OPEN_CLASS = 'rmr-open',
-//  SHOW_CLASS = 'rmr-show';
 
-//console.log(MOBILE);
+  //console.log(MOBILE);
 
   /**
     
@@ -44,7 +39,7 @@
     const
       uls = options.node ? RMR.Node.getAll(options.node) : document.querySelectorAll('ul.rmr-drops'),
 
-      // hash of all 
+      // hash of all timeout references 
       timeouts = {},
 
       // event handler to open a dropdown 
@@ -71,10 +66,7 @@
         if (options.arrow) {
           let n;
 
-          // remove any existing arrows
-          while ((n = drop.querySelector('b.' + ATTRS.arrow)) !== null ) {
-            RMR.Node.remove(n);
-          }
+          RMR.Node.prune(drop, 'b.' + ATTRS.arrow);
           arrow = RMR.Node.create('b', { class: ATTRS.arrow });
           RMR.Node.setStyles(arrow, {
             borderBottomColor: arrowColor,
@@ -90,24 +82,29 @@
         let
           rect = RMR.Node.getRect(drop);
 
+        // place the dropdown `offset` px away from its parent
         drop.style.top = parseInt(targetStyle.height, 10) + options.offset + 'px';
         rect = RMR.Node.getRect(drop);
 
+        // position centered 
         if (options.center) {
           drop.style.left = parseInt(origin.width / 2 - rect.width / 2) + 'px';
           rect = RMR.Node.getRect(drop);
         }
 
+        // is the dropdown clipped by the right edge of the window?
         if (rect.right >= window.innerWidth) {
           drop.style.left = (window.innerWidth - rect.right - 15) + 'px';
           rect = RMR.Node.getRect(drop);
         }
 
+        // is the dropdown clipped by the left edge of the window?
         if (rect.left < 0) {
           drop.style.left = 10 + 'px';
           rect = RMR.Node.getRect(drop);
         }
 
+        // is the dropdown clipped by the bottom?
         if (rect.bottom > window.innerHeight) {
           if (options.arrow) {
             RMR.Node.remove(arrow);
@@ -124,6 +121,7 @@
           drop.style.top = 0 - rect.height - options.offset + 'px';
         }
 
+        // loop through all other dropdowns in this group and hide them 
         const lis = RMR.Node.ancestor(li, 'ul.rmr-drops').querySelectorAll(':scope > li');
         for (const i in lis) {
           if (! RMR.Object.has(lis, i) || lis[i].getAttribute('id') == li.getAttribute('id')) {
