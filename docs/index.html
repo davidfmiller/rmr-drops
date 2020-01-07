@@ -34,6 +34,7 @@
 
 </div>
 
+<div class="hover">
     <ul class="rmr-drops">
       <li>
         <dl>
@@ -80,7 +81,57 @@
           </dd>
       </li>
     </ul>
+</div>
 
+
+<div class="click">
+    <ul class="rmr-drops">
+      <li>
+        <dl>
+          <dt><a href="https://dfm.photography">Photography</a></dt>
+          <dd>
+            <div>
+              <ol>
+                <li><a href="https://vsco.co/davidfmiller">VSCO</a></li>
+                <li><a href="https://www.instagram.com/davidfmiller/">Instagram</a></li>
+                <li><hr/></li>
+                <li><a href="https://flickr.com/photos/davidfmiller">Flickr</a></li>
+              </ol>
+            </div>
+          </dd>
+        </dl>
+      </li>
+      <li class="active">
+        <dl>
+          <dt><a href="https://github.com/davidfmiller">Projects</a></dt>
+          <dd>
+            <div>
+              <ol>
+                <li class="active"><a href="https://github.com/davidfmiller/rmr-drops">rmr-drops</a></li>
+                <li><a href="https://davidfmiller.github.io/modal/">modal</a></li>
+                <li><a href="https://readmeansrun.com/router">Router</a></li>
+                <li><a href="https://readmeansrun.com/pictographs">Pictographs</a></li>
+                <li><a href="https://apps.apple.com/ca/app/mirror/id1475194002?mt=12">Mirror</a></li>
+              </ol>
+            </div>
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><a href="https://readmeansrun.com">Socials</a></dt>
+          <dd>
+            <div>
+              <ol>
+                <li><a href="https://github.com/davidfmiller">GitHub</a></li>
+                <li><a href="https://twitter.com/eldaverino" title="eldaverino">Twitter</a></li>
+                <li><a href="http://www.linkedin.com/in/davidfmiller">LinkedIn</a></li>
+              </ol>
+            </div>
+          </dd>
+      </li>
+    </ul>
+</div>
 
   <div id="man">
     <h1><i>💬</i> <a href="https://github.com/davidfmiller/rmr-drops">rmr-drops</a></h1>
@@ -110,7 +161,7 @@
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     Drops({
-      node: 'ul.rmr-drops',
+      node: '.hover ul.rmr-drops',
 //      debug: false,
       hover: true,
       delay: 1000,
@@ -118,6 +169,17 @@
       arrow: true,
       center: false
     });
+
+    Drops({
+      node: '.click ul.rmr-drops',
+//      debug: false,
+      hover: false,
+      delay: 1000,
+      offset: 0,
+      arrow: true,
+      center: false
+    });
+
   });
   </script>
 
