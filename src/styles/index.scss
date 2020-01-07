@@ -92,3 +92,31 @@ ul.rmr-drops li:before {
   content: "";
   padding: 0;
 }
+
+li.thumbs dd ol {
+  display: flex;
+  padding: 10px;
+}
+
+li.thumbs dd li {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+li.thumbs dd li:last-child {
+  margin-right: 0;
+}
+
+li.thumbs dd li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-indent: -10000em;
+  background: red;
+}
+
+li.thumbs dd li a:hover {
+  background: yellow;
+}

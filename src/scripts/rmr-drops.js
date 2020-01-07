@@ -45,14 +45,15 @@
       // event handler to open a dropdown 
       on = (e) => {
         const li = RMR.Node.ancestor(e.target, 'li', true);
+
+        // remove timeouts for hiding this dropdown
         if (RMR.Object.has(timeouts, li.getAttribute('id'))) {
           window.clearTimeout(timeouts[li.getAttribute('id')]);
           delete timeouts[li.getAttribute('id')];
-//           return;
         }
 
         li.classList.add(OPEN_CLASS);
-        window.setTimeout(function() { li.classList.add(SHOW_CLASS) }, 100);
+        window.setTimeout(function() { li.classList.add(SHOW_CLASS) }, ! options.hover || MOBILE || e.type === 'focus' ? 0 : 1000 );
 
         const
           drop = li.querySelector(':scope dd'),
@@ -69,7 +70,6 @@
           }
           arrow = RMR.Node.create('b', { class: ARROW.class });
           arrow.style.borderBottomColor = arrowColor;
-//          drop.appendChild(arrow);
           drop.insertBefore(arrow, drop.firstChild);
           arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (ARROW.size / 2) + 'px'; 
         }
@@ -81,14 +81,11 @@
         rect = RMR.Node.getRect(drop);
 
         if (options.center) {
-          const left = parseInt(origin.width / 2 - rect.width / 2);
-          drop.style.left = left + 'px';
+          drop.style.left = parseInt(origin.width / 2 - rect.width / 2) + 'px';
           rect = RMR.Node.getRect(drop);
         }
 
         if (rect.right >= window.innerWidth) {
-//           console.log(rect.right, window.innerWidth);
-//           console.log('!');
           drop.style.left = (window.innerWidth - rect.right - 15) + 'px';
           rect = RMR.Node.getRect(drop);
         }
@@ -108,12 +105,6 @@
           }
 
           drop.style.top = 0 - rect.height - options.offset + 'px';
-//           drop.classList.remove('rmr-down');
-//           drop.classList.add('rmr-up');
-
-        } else {
-//           drop.classList.add('rmr-down');
-//           drop.classList.remove('rmr-up');
         }
 
         const lis = RMR.Node.ancestor(li, 'ul.rmr-drops').querySelectorAll(':scope > li');
@@ -193,7 +184,6 @@
         }
 
         const a = li.querySelector(':scope dt a');
-
         if (options.hover) {
           li.addEventListener('mouseenter', on);
           li.addEventListener('mouseleave', off);
