@@ -16,7 +16,6 @@
 
   MOBILE = RMR.Browser.isTouch(),
   ARROW = {
-    size: 5,
     class: 'arrow'
   },
   OPEN_CLASS = 'rmr-open',
@@ -35,6 +34,7 @@
       options.delay = 0;
     }
     options.offset = parseInt(options.offset, 10) > 0 ? parseInt(options.offset, 10) : 0;
+    options.arrow = parseInt(options.arrow, 10) > 0 ? parseInt(options.arrow, 10) : 0;
 
     const
       uls = options.node ? RMR.Node.getAll(options.node) : document.querySelectorAll('ul.rmr-drops'),
@@ -73,13 +73,13 @@
           arrow = RMR.Node.create('b', { class: ARROW.class });
           RMR.Node.setStyles(arrow, {
             borderBottomColor: arrowColor,
-            borderLeftWidth: ARROW.size + 'px',
-            borderRightWidth = ARROW.size + 'px',
-            borderBottomWidth = ARROW.size + 'px'
+            borderLeftWidth: options.arrow + 'px',
+            borderRightWidth: options.arrow + 'px',
+            borderBottomWidth: options.arrow + 'px'
           });
 
           drop.insertBefore(arrow, drop.firstChild);
-          arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (ARROW.size / 2) + 'px'; 
+          arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (options.arrow / 2) + 'px'; 
         }
 
         let
@@ -107,10 +107,10 @@
           if (options.arrow) {
             RMR.Node.remove(arrow);
             arrow.classList.add('rmr-bottom');
-            RMR.Node.setStyles(arrow, {
-              borderTopColor: arrowColor;
-              borderTopWidth: ARROW.size + 'px';
-              borderBottomWidth: 0;
+            RMR.Node.setStyles({
+              borderTopColor: arrowColor,
+              borderTopWidth:  options.arrow + 'px',
+              borderBottomWidth: 0
             });
             drop.appendChild(arrow);
             rect = RMR.Node.getRect(drop);
