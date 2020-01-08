@@ -12,9 +12,8 @@
 ul.rmr-drops {
 
   justify-content: flex-end;
-  dl {
-    margin: 0;
-  }
+
+  dl { margin: 0; }
 
   > li + li { margin-left: 1em; }
 
@@ -31,6 +30,7 @@ ul.rmr-drops {
   }
 
   dt {
+
     background: rgba(0,0,0,0.1);
     border-radius: 3px;
 
@@ -45,6 +45,9 @@ ul.rmr-drops {
   }
 
   dd {
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
 
     &:before {
       content: "";
@@ -52,9 +55,6 @@ ul.rmr-drops {
       height: 0;
     }
 
-    margin: 0;
-    padding: 0;
-    line-height: 1em;
 
     & > div {
       background: #eee;
@@ -69,6 +69,7 @@ ul.rmr-drops {
     a {
       border-bottom: none;
       padding: 5px 15px;
+
       &:hover {
         background: #ccc;
         @include rmr-dark {
@@ -87,6 +88,7 @@ ul.rmr-drops {
     li.active a {
       background: #ddd;
       color: red;
+
       @include rmr-dark {
         background: #2a2a2a;
       }
@@ -109,9 +111,7 @@ li.thumbs {
     height: 30px;
     margin-right: 10px;
 
-    &:last-child {
-      margin-right: 0;
-    }
+    &:last-child { margin-right: 0; }
 
     a {
       display: block;
@@ -121,9 +121,7 @@ li.thumbs {
       text-indent: -10000em;
       background: red;
 
-      &::hover {
-        background: yellow;
-      }
+      &::hover { background: yellow;  }
     }
   }
 }
