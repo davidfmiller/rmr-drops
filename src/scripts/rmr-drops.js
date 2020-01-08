@@ -16,7 +16,8 @@
 
   MOBILE = RMR.Browser.isTouch(),
   STYLES = {
-    'pop': 'rmr-pop'
+    'pop': 'rmr-pop',
+    'slide': 'rmr-slide',
   },
   ATTRS = {
     drops: 'rmr-drops',
