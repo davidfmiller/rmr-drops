@@ -1,103 +1,99 @@
 @import "../../node_modules/rmr-util/src/styles/_rmr-vars.scss";
 @import "../../node_modules/rmr-util/src/styles/_rmr-mixins.scss";
 
-ul.rmr-drops {
-  justify-content: flex-end;
-  dl {
-    margin: 0;
-  }
-}
+/*
+  override styles from man.css and other page-specific styles
+*/
 
 .hover {
   margin-bottom: 1em;
 }
 
 ul.rmr-drops {
+
+  justify-content: flex-end;
+  dl {
+    margin: 0;
+  }
+
   > li + li { margin-left: 1em; }
-}
 
-ul.rmr-drops dt {
-  background: rgba(0,0,0,0.1);
-  @include rmr-dark {
-    background: rgba(255,255,255,0.1);
-  }
-
-  border-radius: 3px;
-
-  a {
-    padding: 10px;
-    border: none;
-    &:hover {
-      border: none;
-    }
-    &:active {
-      color: red;
-    }
-  }
-}
-
-ul.rmr-drops > li.active dt {
- background: rgba(0,0,0,0.2);
-  @include rmr-dark {
-     background: rgba(255,255,255,0.2);
-  }
-}
-
-ul.rmr-drops dd {
-
-  margin: 0;
-  padding: 0;
-  line-height: 1em;
-
-  & > div {
-    background: #eee;
-    box-shadow: 0 3px 3px rgba(0,0,0,0.5);
-
+  > li.active dt {
+   background: rgba(0,0,0,0.2);
     @include rmr-dark {
-      background: #383838;
-      box-shadow: 0 3px 3px rgba(0,0,0,0.5);
+       background: rgba(255,255,255,0.2);
     }
   }
 
-  a {
-    border-bottom: none;
-    padding: 5px 15px;
-    &:hover {
-      background: #ccc;
+  li:before {
+    content: "";
+    padding: 0;
+  }
+
+  dt {
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px;
+
+    @include rmr-dark { background: rgba(255,255,255,0.1); }
+
+    a {
+      padding: 10px;
+      border: none;
+      &:hover { border: none; }
+      &:active { color: red; }
+    }
+  }
+
+  dd {
+
+    &:before {
+      content: "";
+      padding: 0;
+      height: 0;
+    }
+
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
+
+    & > div {
+      background: #eee;
+      box-shadow: 0 3px 3px rgba(0,0,0,0.5);
+
       @include rmr-dark {
-        background: #222;
+        background: #383838;
+        box-shadow: 0 3px 3px rgba(0,0,0,0.5);
+      }
+    }
+
+    a {
+      border-bottom: none;
+      padding: 5px 15px;
+      &:hover {
+        background: #ccc;
+        @include rmr-dark {
+          background: #222;
+        }
+      }
+    }
+
+    hr { margin: 10px 0; }
+
+    ol {
+      margin-top: 0;
+      padding: 10px 0;
+    }
+
+    li.active a {
+      background: #ddd;
+      color: red;
+      @include rmr-dark {
+        background: #2a2a2a;
       }
     }
   }
-
-  hr {
-   margin: 10px 0;
-  }
-
-  ol {
-    margin-top: 0;
-    padding: 10px 0;
-  }
-
-  li.active a {
-    background: #ddd;
-    color: red;
-    @include rmr-dark {
-      background: #2a2a2a;
-    }
-  }
 }
 
-ul.rmr-drops dd:before {
-  content: "";
-  padding: 0;
-  height: 0;
-}
-
-ul.rmr-drops li:before {
-  content: "";
-  padding: 0;
-}
 
 li.thumbs {
 
