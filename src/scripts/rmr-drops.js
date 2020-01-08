@@ -22,7 +22,8 @@
     show: 'rmr-show'
   };
 
-  //console.log(MOBILE);
+//   console.log(RMR);
+//   console.log(MOBILE);
 
   /**
     
@@ -42,7 +43,7 @@
 
       // hash of all timeout references 
       timeouts = {},
-      
+
       clicker = (e) => {
         const
           li = RMR.Node.ancestor(e.target, 'li', false),
@@ -62,6 +63,11 @@
         if (RMR.Object.has(timeouts, li.getAttribute('id'))) {
           window.clearTimeout(timeouts[li.getAttribute('id')]);
           delete timeouts[li.getAttribute('id')];
+        }
+
+        // no more work necessary
+        if (li.classList.contains(ATTRS.open) && li.classList.contains(ATTRS.show)) {
+          return;
         }
 
         li.classList.add(ATTRS.open);
@@ -224,10 +230,11 @@
             a.addEventListener('click', clicker);
           }
         }
-
         // add listeners to target link
         if (a) {
-          a.addEventListener('focus', on);
+          a.addEventListener('focus', (e) => {
+            window.setTimeout(() => { on(e); }, 100); // delay for all browsers
+          });
           a.addEventListener('blur', off);
         }
       }

@@ -28,9 +28,10 @@
     "grunt-contrib-watch": "^1.1.0",
     "mocha": "^4.1.0",
     "uglify-es": "^3.3.4",
+    "uglifyjs-3-webpack-plugin": "^1.2.4",
     "webpack": "^4.41.5"
   },
   "dependencies": {
-    "rmr-util": "^1.1.45"
+    "rmr-util": "^1.1.46"
   }
 }

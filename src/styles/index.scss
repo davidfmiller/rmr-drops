@@ -26,6 +26,10 @@ ul.rmr-drops dt a {
   border: none;
 }
 
+ul.rmr-drops dt a:active {
+  color: red;
+}
+
 ul.rmr-drops dt a:hover {
   border: none;
 }

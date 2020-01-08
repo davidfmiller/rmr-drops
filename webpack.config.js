@@ -1,7 +1,8 @@
 
 const
     path = require('path'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    uglifyJsPlugin = require('uglifyjs-3-webpack-plugin');
 
 const config = {
   entry: './src/scripts/build.js',
@@ -9,13 +10,20 @@ const config = {
     path: path.resolve(__dirname, 'docs/build/'),
     filename: 'rmr-drops.bundle.js'
   },
-  mode: 'production',
-//  mode: 'development',
+//  mode: 'production',
+  mode: 'development',
   watch: true,
   plugins : [
-//     new webpack.optimize.UglifyJsPlugin({
-//       compress: { warnings: false }
-//     })
+
+    new uglifyJsPlugin({
+      uglifyOptions: {
+        warnings: false,
+        ie8: false,
+        output: {
+          comments: false
+        }
+      }
+    })
   ],
   module: {
     rules: [
