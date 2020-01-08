@@ -158,7 +158,7 @@
   <script src="./build/rmr-drops.bundle.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    Drops({
+    const hover = Drops({
       node: '.hover ul.rmr-drops',
       hover: true,
       delay: 1000,
@@ -167,7 +167,7 @@
       center: false
     });
 
-    Drops({
+    const click = Drops({
       node: '.click ul.rmr-drops',
       hover: false,
       delay: 1000,
@@ -175,6 +175,9 @@
       arrow: 5,
       center: true
     });
+
+    console.log(hover, click);
+    click.drop('li.thumbs');
 
   });
   </script>

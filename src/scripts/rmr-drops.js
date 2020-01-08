@@ -168,7 +168,6 @@
       return;
     }
 
-
     for (const i in uls) {
       if (! RMR.Object.has(uls, i)) { continue; }
 
@@ -236,6 +235,18 @@
         }
       }
     }
+    
+    return {
+      drop: function(arg) {
+        const n = RMR.Node.get(arg);
+        if (! n) {
+          console.error('No dropdown exists', arg);
+          return;
+        }
+        on({target: n});
+      }
+    };
+    
   };
 
   module.exports = Drops;
