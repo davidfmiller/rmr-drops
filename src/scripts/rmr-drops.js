@@ -14,11 +14,16 @@
   const
   RMR = require('rmr-util'),
 
-  MOBILE = RMR.Browser.isTouch(),
+  // being viewed on a touch device?
+  TOUCH = RMR.Browser.isTouch(),
+
+  // canned dropdown styles
   STYLES = {
     'pop': 'rmr-pop',
     'slide': 'rmr-slide',
   },
+
+  // attributes used throughout the widget
   ATTRS = {
     drops: 'rmr-drops',
     arrow: 'rmr-arrow',
@@ -26,8 +31,7 @@
     show: 'rmr-show'
   };
 
-//   console.log(RMR);
-//   console.log(MOBILE);
+//   console.log(TOUCH);
 
   /**
     
@@ -53,7 +57,7 @@
           li = RMR.Node.ancestor(e.target, 'li', false),
           isOpen = li.classList.contains(ATTRS.open);
 
-        if ((MOBILE && ! isOpen) || (options.hover || ! isOpen)) {
+        if ((TOUCH && ! isOpen) || (options.hover || ! isOpen)) {
           e.preventDefault();
           on(e);
         }
@@ -75,7 +79,7 @@
         }
 
         li.classList.add(ATTRS.open);
-        window.setTimeout(function() { li.classList.add(ATTRS.show) }, ! options.hover || MOBILE || e.type === 'focus' ? 0 : 100 );
+        window.setTimeout(function() { li.classList.add(ATTRS.show) }, ! options.hover || TOUCH || e.type === 'focus' ? 0 : 100 );
 
         const
           drop = li.querySelector(':scope dd'),
@@ -188,7 +192,7 @@
       }
 
       // add event listener to dismiss popovers when document.body is clicked on
-      if (! options.hover || MOBILE) {
+      if (! options.hover || TOUCH) {
         document.body.addEventListener('click', (e) => {
           const ul = RMR.Node.ancestor(e.target, 'ul.' + ATTRS.drops, false);
           if (! ul) {
@@ -234,7 +238,7 @@
         }
         else {
           if (a) {
-            // if the target is clicked and its dropdown is NOT open (or we're on mobile where there is no hover event)
+            // if the target is clicked and its dropdown is NOT open (or we're on a touch device where there is no hover event)
             a.addEventListener('click', clicker);
           }
         }
