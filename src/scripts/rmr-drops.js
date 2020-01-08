@@ -42,6 +42,17 @@
 
       // hash of all timeout references 
       timeouts = {},
+      
+      clicker = (e) => {
+        const
+          li = RMR.Node.ancestor(e.target, 'li', false),
+          isOpen = li.classList.contains(ATTRS.open);
+
+        if ((MOBILE && ! isOpen) || (options.hover || ! isOpen)) {
+          e.preventDefault();
+          on(e);
+        }
+      },
 
       // event handler to open a dropdown 
       on = (e) => {
@@ -210,16 +221,7 @@
         else {
           if (a) {
             // if the target is clicked and its dropdown is NOT open (or we're on mobile where there is no hover event)
-            a.addEventListener('click', (e) => {
-              const
-                li = RMR.Node.ancestor(e.target, 'li', false),
-                isOpen = li.classList.contains(ATTRS.open);
-
-              if ((MOBILE && ! isOpen) || (options.hover || ! isOpen)) {
-                e.preventDefault();
-                on(e);
-              }
-            });
+            a.addEventListener('click', clicker);
           }
         }
 
