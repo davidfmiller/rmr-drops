@@ -110,15 +110,15 @@
           if (options.arrow) {
             RMR.Node.remove(arrow);
             arrow.classList.add('rmr-bottom');
-            RMR.Node.setStyles({
+            RMR.Node.setStyles(arrow, {
               borderTopColor: arrowColor,
-              borderTopWidth:  options.arrow + 'px',
-              borderBottomWidth: 0
+              borderBottomColor: 'transparent',
+              borderTopWidth:  options.arrow,
+              borderBottomWidth: '0px'
             });
             drop.appendChild(arrow);
-            rect = RMR.Node.getRect(drop);
           }
-
+          rect = RMR.Node.getRect(drop);
           drop.style.top = 0 - rect.height - options.offset + 'px';
         }
 
