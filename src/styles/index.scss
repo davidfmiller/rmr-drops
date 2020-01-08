@@ -12,6 +12,10 @@ ul.rmr-drops {
   margin-bottom: 1em;
 }
 
+ul.rmr-drops {
+  > li + li { margin-left: 1em; }
+}
+
 ul.rmr-drops dt {
   background: rgba(0,0,0,0.1);
   @include rmr-dark {

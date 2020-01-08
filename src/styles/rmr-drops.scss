@@ -7,9 +7,8 @@
 ul.rmr-drops {
   box-sizing: border-box;
   display: flex;
-  a {
-    display: block;
-  }
+
+  a { display: block; }
 
   li {
     line-height: 1em;
@@ -43,30 +42,18 @@ ul.rmr-drops {
       }
     }
 
-    & + li {
-      margin-left: 1em;
-    }
-
     &.rmr-open {
-      dd {
-        display: block;
-      }
+      dd { display: block; }
       &.rmr-show {
-        dd {
-          opacity: 1;
-        }
+        dd { opacity: 1; }
       }
     }
 
-    dt {
-      cursor: pointer;
-    }
+    dt { cursor: pointer; }
 
     dd {
 
-      > div  {
-        border-radius: 3px;
-      }
+      > div  { border-radius: 3px; }
 
       z-index: 1;
       transition: opacity $rmr-transition-duration-short;
@@ -89,7 +76,7 @@ ul.rmr-drops {
       } // li
     } // dd
   } // & > li
-}
+} // ul.rmr-drops
 
 // canned styles
 ul.rmr-drops {
