@@ -71,7 +71,7 @@
         }
 
         li.classList.add(ATTRS.open);
-        window.setTimeout(function() { li.classList.add(ATTRS.show) }, ! options.hover || MOBILE || e.type === 'focus' ? 0 : 250 );
+        window.setTimeout(function() { li.classList.add(ATTRS.show) }, ! options.hover || MOBILE || e.type === 'focus' ? 0 : 100 );
 
         const
           drop = li.querySelector(':scope dd'),
