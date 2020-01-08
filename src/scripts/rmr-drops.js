@@ -17,12 +17,6 @@
   // being viewed on a touch device?
   TOUCH = RMR.Browser.isTouch(),
 
-  // canned dropdown styles
-  STYLES = {
-    'pop': 'rmr-pop',
-    'slide': 'rmr-slide',
-  },
-
   // attributes used throughout the widget
   ATTRS = {
     drops: 'rmr-drops',
@@ -52,6 +46,7 @@
       // hash of all timeout references 
       timeouts = {},
 
+      // event handler for li > dl > dt > a
       clicker = (e) => {
         const
           li = RMR.Node.ancestor(e.target, 'li', false),
@@ -182,14 +177,6 @@
       const
         ul = uls[i],
         lis = ul.querySelectorAll(':scope > li');
-
-      if (options.style) {
-        if (! RMR.Object.has(STYLES, options.style)) {
-          console.warn('Invalid dropdown style `' + options.style + '`');
-        } else {
-          ul.classList.add(STYLES[options.style]);
-        }
-      }
 
       // add event listener to dismiss popovers when document.body is clicked on
       if (! options.hover || TOUCH) {
