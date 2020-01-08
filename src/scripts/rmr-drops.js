@@ -103,7 +103,7 @@
 
         // position centered 
         if (options.center) {
-          drop.style.left = parseInt(origin.width / 2 - rect.width / 2) + 'px';
+          drop.style.left = parseInt(origin.width / 2 - (rect.width / 1.25) / 2) + 'px';
           rect = RMR.Node.getRect(drop);
         }
 
