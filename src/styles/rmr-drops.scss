@@ -52,9 +52,12 @@ ul.rmr-drops {
     &.rmr-open {
       dd {
         display: block;
+        transform: scale(1.2);
+        transition: transform 0.2s;
       }
       &.rmr-show {
         dd {
+          transform: scale(1);
           opacity: 1;
         }
       }
