@@ -26,7 +26,6 @@ ul.rmr-drops {
   & > li {
     display: block;
     position: relative;
-    z-index: 1;
 
     b.rmr-arrow {
       width: 0px;
@@ -68,7 +67,7 @@ ul.rmr-drops {
     }
 
     dd {
-
+      z-index: 1;
       opacity: 0;
       transition: opacity $rmr-transition-duration-short;
 

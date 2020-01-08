@@ -82,8 +82,6 @@
 
         let arrow;
         if (options.arrow) {
-          let n;
-
           RMR.Node.prune(drop, 'b.' + ATTRS.arrow);
           arrow = RMR.Node.create('b', { class: ATTRS.arrow });
           RMR.Node.setStyles(arrow, {
@@ -97,8 +95,7 @@
           arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (options.arrow / 2) + 'px'; 
         }
 
-        let
-          rect = RMR.Node.getRect(drop);
+        let rect = RMR.Node.getRect(drop);
 
         // place the dropdown `offset` px away from its parent
         drop.style.top = parseInt(targetStyle.height, 10) + options.offset + 'px';
