@@ -5,13 +5,21 @@
   override styles from man.css and other page-specific styles
 */
 
-.hover {
+
+
+.hover, .click {
   margin-bottom: 1em;
+  display: flex;
+  padding-right: 50px;
+  justify-content: flex-end;
+  p {
+    margin: 0;
+    padding: 10px 10px 0 0;
+    line-height: 1em;
+  }
 }
 
 ul.rmr-drops {
-
-  justify-content: flex-end;
 
   dl { margin: 0; }
 
