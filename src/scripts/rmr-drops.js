@@ -15,6 +15,9 @@
   RMR = require('rmr-util'),
 
   MOBILE = RMR.Browser.isTouch(),
+  STYLES = {
+    'pop': 'rmr-pop'
+  },
   ATTRS = {
     drops: 'rmr-drops',
     arrow: 'rmr-arrow',
@@ -174,6 +177,14 @@
       const
         ul = uls[i],
         lis = ul.querySelectorAll(':scope > li');
+
+      if (options.style) {
+        if (! RMR.Object.has(STYLES, options.style)) {
+          console.warn('Invalid dropdown style `' + options.style + '`');
+        } else {
+          ul.classList.add(STYLES[options.style]);
+        }
+      }
 
       // add event listener to dismiss popovers when document.body is clicked on
       if (! options.hover || MOBILE) {
