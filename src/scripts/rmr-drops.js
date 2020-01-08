@@ -120,10 +120,6 @@
           }
 
           drop.style.top = 0 - rect.height - options.offset + 'px';
-          rect = RMR.Node.getRect(drop);
-          if (rect.top < 0) {
-            drop.style.top = 0 - rect.top + 'px';
-          }
         }
 
         // loop through all other dropdowns in this group and hide them 
