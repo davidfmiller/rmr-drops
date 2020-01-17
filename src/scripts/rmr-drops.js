@@ -41,7 +41,7 @@
     options.arrow = parseInt(options.arrow, 10) > 0 ? parseInt(options.arrow, 10) : 0;
 
     const
-      uls = options.node ? RMR.Node.getAll(options.node) : document.querySelectorAll('ul.' + ATTRS.drops),
+      uls = options.node ? RMR.Node.getAll(options.node) : RMR.Node.getAll('ul.' + ATTRS.drops),
 
       // hash of all timeout references 
       timeouts = {},
