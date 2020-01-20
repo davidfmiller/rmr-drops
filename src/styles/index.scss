@@ -38,19 +38,15 @@ ul.rmr-drops {
     padding: 0;
   }
 
-  dt {
-
+  > li > a,
+  dt > a {
+    @include rmr-dark { background: rgba(255,255,255,0.1); }
     background: rgba(0,0,0,0.1);
     border-radius: 3px;
-
-    @include rmr-dark { background: rgba(255,255,255,0.1); }
-
-    a {
-      padding: 10px;
-      border: none;
-      &:hover { border: none; }
-      &:active { color: red; }
-    }
+    padding: 10px;
+    border: none;
+    &:hover { border: none; }
+    &:active { color: red; }
   }
 
   dd {
