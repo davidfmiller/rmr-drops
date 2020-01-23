@@ -78,7 +78,14 @@
 
         const
           drop = li.querySelector(':scope dd'),
-          target = li.querySelector(':scope dt'),
+          target = li.querySelector(':scope dt');
+
+        // no dropdown 
+        if (! target) {
+          return;
+        }
+
+        const
           origin = RMR.Node.getRect(target),
           targetStyle = window.getComputedStyle(target),
           arrowColor = window.getComputedStyle(drop.querySelector(':scope > div')).backgroundColor;
