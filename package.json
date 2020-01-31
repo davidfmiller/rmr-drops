@@ -27,8 +27,8 @@
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-watch": "^1.1.0",
     "mocha": "^4.1.0",
+    "terser-webpack-plugin": "^2.3.4",
     "uglify-es": "^3.3.4",
-    "uglifyjs-3-webpack-plugin": "^1.2.4",
     "webpack": "^4.41.5"
   },
   "dependencies": {
