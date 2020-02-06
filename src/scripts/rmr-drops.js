@@ -113,19 +113,19 @@
 
         // position centered 
         if (options.center) {
-          drop.style.left = parseInt((origin.width - rect.width) / 2, 10) + 'px';
+          drop.style.left = parseInt(origin.width / 2 - (rect.width) / 2) + 'px';
           rect = RMR.Node.getRect(drop);
         }
 
         // is the dropdown clipped by the right edge of the window?
         if (rect.right >= window.innerWidth) {
-          drop.style.left = (window.innerWidth - rect.right - 15) + 'px';
+          drop.style.left = parseInt(drop.style.left, 10) - (rect.right - window.innerWidth) + 'px';
           rect = RMR.Node.getRect(drop);
         }
 
         // is the dropdown clipped by the left edge of the window?
         if (rect.left < 0) {
-          drop.style.left = 10 + 'px';
+          drop.style.left = '0px';
           rect = RMR.Node.getRect(drop);
         }
 
@@ -259,7 +259,6 @@
     
   };
 
-window.RMR = RMR;
   module.exports = Drops;
 
 })();
