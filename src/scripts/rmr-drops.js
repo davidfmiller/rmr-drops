@@ -1,6 +1,3 @@
-/* global  */
-
-
 /*
  * rmr-drops
  * © 2020 David Miller
@@ -24,8 +21,6 @@
     open: 'rmr-open',
     show: 'rmr-show'
   };
-
-//   console.log(TOUCH);
 
   /**
     
@@ -251,7 +246,8 @@
         }
       }
     }
-    
+
+    // object that allows programmatic opening of drops
     return {
       drop: function(arg) {
         const n = RMR.Node.get(arg);
@@ -262,7 +258,6 @@
         on({target: n});
       }
     };
-    
   };
 
   module.exports = Drops;
