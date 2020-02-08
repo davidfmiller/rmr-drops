@@ -29,11 +29,17 @@
 
   /**
     
-     @param options {Object} - 
-   
+    @param options {Object} - 
+      center {Bool} - 
+      offset {Integer} - 
+      arrow {Integer} -
+      node {String|Element} - 
+      hover {Bool} - 
+      delay {Integer} - milliseconds 
    */
   const Drops = function(options) {
 
+    if (! options) { options = {}; }
     if (! parseInt(options.delay, 10)) {
       options.delay = 0;
     }
