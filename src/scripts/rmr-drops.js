@@ -103,7 +103,8 @@
           });
 
           drop.insertBefore(arrow, drop.firstChild);
-          arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (options.arrow / 2) + 'px'; 
+          arrow.style.marginLeft = parseFloat(window.getComputedStyle(drop).width, 10) / 2 - (options.arrow) + 'px'; 
+//          arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (options.arrow / 2) + 'px'; 
         }
 
         let rect = RMR.Node.getRect(drop);
@@ -114,7 +115,8 @@
 
         // position centered 
         if (options.center) {
-          drop.style.left = parseInt(origin.width / 2 - (rect.width) / 2) + 'px';
+          drop.style.left = (origin.width - rect.width) / (options.hover ? 2 : 4) + 'px';
+          console.log(origin.width, rect.width, drop.style.left);
           rect = RMR.Node.getRect(drop);
         }
 
