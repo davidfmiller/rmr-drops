@@ -116,7 +116,6 @@
         // position centered 
         if (options.center) {
           drop.style.left = (origin.width - rect.width) / (options.hover ? 2 : 4) + 'px';
-          console.log(origin.width, rect.width, drop.style.left);
           rect = RMR.Node.getRect(drop);
         }
 
