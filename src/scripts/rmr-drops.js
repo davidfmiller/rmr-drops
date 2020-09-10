@@ -40,6 +40,7 @@
     }
     options.offset = parseInt(options.offset, 10) > 0 ? parseInt(options.offset, 10) : 0;
     options.arrow = parseInt(options.arrow, 10) > 0 ? parseInt(options.arrow, 10) : 0;
+    options.debug = RMR.Object.has(options, 'debug') ? options.debug : false;
 
     const
       uls = options.node ? RMR.Node.getAll(options.node) : RMR.Node.getAll('ul.' + ATTRS.drops),
@@ -104,31 +105,29 @@
 
           drop.insertBefore(arrow, drop.firstChild);
           arrow.style.marginLeft = parseFloat(window.getComputedStyle(drop).width, 10) / 2 - (options.arrow) + 'px'; 
-//          arrow.style.marginLeft = parseInt(targetStyle.width, 10) / 2 - (options.arrow / 2) + 'px'; 
         }
-
-        let rect = RMR.Node.getRect(drop);
 
         // place the dropdown `offset` px away from its parent
         drop.style.top = parseInt(targetStyle.height, 10) + options.offset + 'px';
-        rect = RMR.Node.getRect(drop);
+        let rect = drop.getBoundingClientRect();
 
         // position centered 
         if (options.center) {
+        console.log('center!');
           drop.style.left = (origin.width - rect.width) / (options.hover ? 2 : 4) + 'px';
-          rect = RMR.Node.getRect(drop);
+          rect = drop.getBoundingClientRect();
         }
 
         // is the dropdown clipped by the right edge of the window?
         if (rect.right >= window.innerWidth) {
           drop.style.left = parseInt(drop.style.left, 10) - (rect.right - window.innerWidth) + 'px';
-          rect = RMR.Node.getRect(drop);
+          rect = drop.getBoundingClientRect()
         }
 
         // is the dropdown clipped by the left edge of the window?
         if (rect.left < 0) {
           drop.style.left = '0px';
-          rect = RMR.Node.getRect(drop);
+          rect = drop.getBoundingClientRect()
         }
 
         // is the dropdown clipped by the bottom?
@@ -144,7 +143,8 @@
             });
             drop.appendChild(arrow);
           }
-          rect = RMR.Node.getRect(drop);
+
+          rect = drop.getBoundingClientRect();
           drop.style.top = 0 - rect.height - options.offset + 'px';
         }
 
@@ -160,6 +160,9 @@
 
       // force a dropdown to close
       hide = (target) => {
+       if (options.debug) {
+         return;
+       }
         target.classList.remove(ATTRS.open);
         target.classList.remove(ATTRS.show);
         window.clearTimeout(timeouts[target.getAttribute('id')]);
