@@ -113,7 +113,6 @@
 
         // position centered 
         if (options.center) {
-        console.log('center!');
           drop.style.left = (origin.width - rect.width) / (options.hover ? 2 : 4) + 'px';
           rect = drop.getBoundingClientRect();
         }
