@@ -42,6 +42,9 @@
     options.arrow = parseInt(options.arrow, 10) > 0 ? parseInt(options.arrow, 10) : 0;
     options.debug = RMR.Object.has(options, 'debug') ? options.debug : false;
 
+    // if touch browser, then override hover to force click/tap
+    options.hover = options.hover && !TOUCH;
+
     const
       uls = options.node ? RMR.Node.getAll(options.node) : RMR.Node.getAll('ul.' + ATTRS.drops),
 
