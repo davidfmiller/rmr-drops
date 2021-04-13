@@ -28,7 +28,7 @@
 
 <div class="sticky">
   <div class="example">
-  <p>Hover, 15px arrow, no offset, slide, center:</p>
+  <p>Hover, 15px arrow, no offset, slide, center, debug:</p>
   <ul class="rmr-drops rmr-slide">
 
     <li>
@@ -74,7 +74,7 @@
 </div>
 
 <div class="example hover">
-  <p>Hover, 10px arrow, no offset, slide:</p>
+  <p>Hover, 10px arrow, left, no offset, slide:</p>
   <ul class="rmr-drops rmr-slide">
 
     <li>
@@ -120,7 +120,7 @@
 
 
 <div class="example click">
-  <p>Click, center, pop:</p>
+  <p>Click, right, pop:</p>
   <ul class="rmr-drops rmr-pop">
     <li class="thumbs">
       <dl>
@@ -210,7 +210,7 @@
       delay: 1000,
       offset: 0,
       arrow: 15,
-      center: true,
+      align: 'center',
       style: 'slide'
     });
 
@@ -220,7 +220,7 @@
       delay: 1000,
       offset: 0,
       arrow: 10,
-      center: true,
+      align: 'left',
       style: 'slide'
     });
 
@@ -228,9 +228,9 @@
       node: '.click ul.rmr-drops',
       hover: false,
       delay: 1000,
-      offset: 5,
-      arrow: 10,
-      center: true,
+      offset: 1,
+      arrow: 8,
+      align: 'right',
       style: 'pop'
     });
 

@@ -41,6 +41,8 @@
     options.offset = parseInt(options.offset, 10) > 0 ? parseInt(options.offset, 10) : 0;
     options.arrow = parseInt(options.arrow, 10) > 0 ? parseInt(options.arrow, 10) : 0;
     options.debug = RMR.Object.has(options, 'debug') ? options.debug : false;
+    options.align = RMR.Object.has(options, 'align') ? options.align : 'center';
+
 
     // if touch browser, then override hover to force click/tap
     options.hover = options.hover && !TOUCH;
@@ -114,9 +116,21 @@
         drop.style.top = parseInt(targetStyle.height, 10) + options.offset + 'px';
         let rect = drop.getBoundingClientRect();
 
-        // position centered 
-        if (options.center) {
+        // position centered
+        if (options.align == 'center') {
           drop.style.left = (origin.width - rect.width) / (options.hover ? 2 : 4) + 'px';
+          rect = drop.getBoundingClientRect();
+        }
+        else if (options.align == 'left') {
+          drop.style.left = 0 + 'px';
+          arrow.style.marginLeft = '10px';
+          rect = drop.getBoundingClientRect();
+        }
+        else if (options.align == 'right') {
+          drop.style.right = '0px';
+          drop.style.left = 'auto';
+          arrow.style.marginLeft = 'auto';
+          arrow.style.marginRight = '10px';
           rect = drop.getBoundingClientRect();
         }
 
