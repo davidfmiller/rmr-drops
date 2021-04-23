@@ -259,9 +259,11 @@
         }
         // add listeners to target link
         if (a) {
-          a.addEventListener('focus', (e) => {
-            window.setTimeout(() => { on(e); }, 100); // delay for all browsers
-          });
+// don't automagically show dropdown when link is focused
+//           a.addEventListener('focus', (e) => {
+//             console.log('focus', e);
+//             window.setTimeout(() => { on(e); }, 100); // delay for all browsers
+//           });
           a.addEventListener('blur', off);
         }
       }
