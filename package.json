@@ -25,7 +25,6 @@
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-watch": "^1.1.0",
-    "terser-webpack-plugin": "^2.3.5",
     "uglify-es": "^3.3.4",
     "webpack": "^4.42.0"
   },

@@ -1,8 +1,8 @@
 
 const
     path = require('path'),
-    webpack = require('webpack'),
-    terser = require('terser-webpack-plugin');
+    webpack = require('webpack');
+//    terser = require('terser-webpack-plugin');
 
 const config = {
   entry: './src/scripts/build.js',
@@ -14,10 +14,10 @@ const config = {
   mode: 'development',
   watch: true,
   plugins : [
-    new terser({
-      extractComments: false,
-      test: /\.js(\?.*)?$/i
-    }),
+//     new terser({
+//       extractComments: false,
+//       test: /\.js(\?.*)?$/i
+//     }),
   ],
   module: {
     rules: [
