@@ -26,11 +26,12 @@
 </head>
 <body>
 
+<!--
 <div class="sticky">
   <div class="example">
   <p>Hover, 15px arrow, no offset, slide, center, debug:</p>
-  <ul class="rmr-drops rmr-slide">
 
+  <ul class="rmr-drops rmr-slide">
     <li>
       <a href="https://dfm.photography">Empty</a>
     </li>
@@ -72,6 +73,7 @@
   </ul>
 </div>
 </div>
+-->
 
 <div class="example hover">
   <p>Hover, 10px arrow, left, no offset, slide:</p>
@@ -166,9 +168,6 @@
     <p>The last set of dropdowns I’ll ever write.</p>
     <h2>Todo</h2>
     <dl>
-      <dt><code>hover</code></dt>
-      <dd>if <code>true</code>, dropdowns will appear when hovered over;</dd>
-      <dd>if <code>false</code>, dropdowns will appear when clicked</dd>
 
       <dt><code>arrow</code></dt>
       <dd>if <code>> 0</code>, dropdowns will have a little arrow element attaching them to the target with dimensions of the given size</dd>
@@ -178,9 +177,6 @@
 
       <dt><code>offset</code></dt>
       <dd>how many pixels the dropdown should appear above/below their associated element</dd>
-
-      <dt><code>delay</code></dt>
-      <dd>how many milliseconds the dropdown should stick around after mousing out (only applicable when <code>hover</code> is <code>true</code>)</dd>
 
     </dl>
 
@@ -195,16 +191,16 @@
     window.Man({ pre: true });
 
 
-    const sticky = Drops({
-      debug: true,
-      node: '.sticky ul.rmr-drops',
-      hover: true,
-      delay: 1000,
-      offset: 0,
-      arrow: 15,
-      align: 'center',
-      style: 'slide'
-    });
+//     const sticky = Drops({
+//       debug: true,
+//       node: '.sticky ul.rmr-drops',
+//       hover: true,
+//       delay: 1000,
+//       offset: 0,
+//       arrow: 15,
+//       align: 'center',
+//       style: 'slide'
+//     });
 
     const hover = Drops({
       node: '.hover ul.rmr-drops',

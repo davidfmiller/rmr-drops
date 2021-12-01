@@ -23,14 +23,14 @@
   };
 
   /**
-    
-    @param options {Object} - 
-      center {Bool} - 
-      offset {Integer} - 
+
+    @param options {Object} -
+      center {Bool} -
+      offset {Integer} -
       arrow {Integer} -
-      node {String|Element} - 
-      hover {Bool} - 
-      delay {Integer} - milliseconds 
+      node {String|Element} -
+      hover {Bool} -
+      delay {Integer} - milliseconds
    */
   const Drops = function(options) {
 
@@ -45,27 +45,30 @@
 
 
     // if touch browser, then override hover to force click/tap
-    options.hover = options.hover && !TOUCH;
+    options.hover = false; //options.hover && !TOUCH;
 
     const
       uls = options.node ? RMR.Node.getAll(options.node) : RMR.Node.getAll('ul.' + ATTRS.drops),
 
-      // hash of all timeout references 
+      // hash of all timeout references
       timeouts = {},
 
       // event handler for li > dl > dt > a
       clicker = (e) => {
         const
           li = RMR.Node.ancestor(e.target, 'li', false),
-          isOpen = li.classList.contains(ATTRS.open);
+          isOpen = li.classList.contains(ATTRS.open) && li.classList.contains(ATTRS.show);
 
-        if ((TOUCH && ! isOpen) || (options.hover || ! isOpen)) {
           e.preventDefault();
-          on(e);
-        }
+          if (isOpen) {
+            hide(e.target.closest('li'));
+          } else {
+            on(e);
+          }
+
       },
 
-      // event handler to open a dropdown 
+      // event handler to open a dropdown
       on = (e) => {
         const li = RMR.Node.ancestor(e.target, 'li', true);
 
@@ -81,13 +84,13 @@
         }
 
         li.classList.add(ATTRS.open);
-        window.setTimeout(function() { li.classList.add(ATTRS.show) }, ! options.hover || TOUCH || e.type === 'focus' ? 0 : 100 );
+        window.setTimeout(function() { li.classList.add(ATTRS.show) }, 100 );
 
         const
           drop = li.querySelector(':scope dd'),
           target = li.querySelector(':scope dt');
 
-        // no dropdown 
+        // no dropdown
         if (! target) {
           return;
         }
@@ -109,7 +112,7 @@
           });
 
           drop.insertBefore(arrow, drop.firstChild);
-          arrow.style.marginLeft = parseFloat(window.getComputedStyle(drop).width, 10) / 2 - (options.arrow) + 'px'; 
+          arrow.style.marginLeft = parseFloat(window.getComputedStyle(drop).width, 10) / 2 - (options.arrow) + 'px';
         }
 
         // place the dropdown `offset` px away from its parent
@@ -164,7 +167,7 @@
           drop.style.top = 0 - rect.height - options.offset + 'px';
         }
 
-        // loop through all other dropdowns in this group and hide them 
+        // loop through all other dropdowns in this group and hide them
         const lis = RMR.Node.ancestor(li, 'ul.' + ATTRS.drops).querySelectorAll(':scope > li');
         for (const i in lis) {
           if (! RMR.Object.has(lis, i) || lis[i].getAttribute('id') == li.getAttribute('id')) {
@@ -185,7 +188,7 @@
         delete timeouts[target.getAttribute('id')];
       },
 
-      // event handler to close a dropdown after the designated period of time 
+      // event handler to close a dropdown after the designated period of time
       off = (e) => {
         const li = RMR.Node.ancestor(e.target, 'li', true);
         timeouts[li.getAttribute('id')] = window.setTimeout(() => {
@@ -207,7 +210,7 @@
         lis = ul.querySelectorAll(':scope > li');
 
       // add event listener to dismiss popovers when document.body is clicked on
-      if (! options.hover || TOUCH) {
+//      if (! options.hover || TOUCH) {
         document.body.addEventListener('click', (e) => {
           const ul = RMR.Node.ancestor(e.target, 'ul.' + ATTRS.drops, false);
           if (! ul) {
@@ -217,9 +220,9 @@
             }
           }
         });
-      }
+//      }
 
-      // all 
+      // all
       for (const j in lis) {
         if (! RMR.Object.has(lis, j)) { continue; }
         const li = lis[j];
@@ -229,41 +232,33 @@
           li.setAttribute('id', RMR.String.guid());
         }
 
-        // add listeners to all links in the dropdown list to keep dropdown open 
+        // add listeners to all links in the dropdown list to keep dropdown open
         const links = li.querySelectorAll('dd a');
         for (const j in links) {
           if (! RMR.Object.has(links, j)) { continue; }
 
           links[j].addEventListener('focus', (e) => {
-            const target = RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false); 
+            const target = RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false);
             on({ target: target });
           });
 
           links[j].addEventListener('blur', (e) => {
-            const target = RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false); 
+            const target = RMR.Node.ancestor(e.target.parentNode.parentNode, 'li', false);
             off({ target: target });
           });
 
         }
 
         const a = li.querySelector(':scope dt a');
-        if (options.hover) {
-          li.addEventListener('mouseenter', on);
-          li.addEventListener('mouseleave', off);
-        }
-        else {
-          if (a) {
-            // if the target is clicked and its dropdown is NOT open (or we're on a touch device where there is no hover event)
-            a.addEventListener('click', clicker);
-          }
-        }
-        // add listeners to target link
+//         if (options.hover) {
+//           li.addEventListener('mouseenter', on);
+//           li.addEventListener('mouseleave', off);
+//         }
+
         if (a) {
-// don't automagically show dropdown when link is focused
-//           a.addEventListener('focus', (e) => {
-//             console.log('focus', e);
-//             window.setTimeout(() => { on(e); }, 100); // delay for all browsers
-//           });
+          // if the target is clicked and its dropdown is NOT open (or we're on a touch device where there is no hover event)
+          a.addEventListener('click', clicker);
+          a.addEventListener('focus', clicker);
           a.addEventListener('blur', off);
         }
       }
