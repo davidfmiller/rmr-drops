@@ -43,9 +43,10 @@
     options.debug = RMR.Object.has(options, 'debug') ? options.debug : false;
     options.align = RMR.Object.has(options, 'align') ? options.align : 'center';
 
-
     // if touch browser, then override hover to force click/tap
-    options.hover = false; //options.hover && !TOUCH;
+    options.hover = options.hover || TOUCH;
+
+console.log(options.hover);
 
     const
       uls = options.node ? RMR.Node.getAll(options.node) : RMR.Node.getAll('ul.' + ATTRS.drops),
@@ -59,13 +60,19 @@
           li = RMR.Node.ancestor(e.target, 'li', false),
           isOpen = li.classList.contains(ATTRS.open) && li.classList.contains(ATTRS.show);
 
-          e.preventDefault();
+console.log(isOpen);
+
+//           if (options.hover) {
+//             if (isOpen) {
+//               return;
+//             }
+//           }
+
           if (isOpen) {
             hide(e.target.closest('li'));
           } else {
             on(e);
           }
-
       },
 
       // event handler to open a dropdown
@@ -250,10 +257,10 @@
         }
 
         const a = li.querySelector(':scope dt a');
-//         if (options.hover) {
-//           li.addEventListener('mouseenter', on);
-//           li.addEventListener('mouseleave', off);
-//         }
+        if (options.hover) {
+          li.addEventListener('mouseenter', on);
+           li.addEventListener('mouseleave', off);
+         }
 
         if (a) {
           // if the target is clicked and its dropdown is NOT open (or we're on a touch device where there is no hover event)
