@@ -46,8 +46,6 @@
     // if touch browser, then override hover to force click/tap
     options.hover = options.hover || TOUCH;
 
-console.log(options.hover);
-
     const
       uls = options.node ? RMR.Node.getAll(options.node) : RMR.Node.getAll('ul.' + ATTRS.drops),
 
@@ -60,18 +58,15 @@ console.log(options.hover);
           li = RMR.Node.ancestor(e.target, 'li', false),
           isOpen = li.classList.contains(ATTRS.open) && li.classList.contains(ATTRS.show);
 
-console.log(isOpen);
-
-//           if (options.hover) {
-//             if (isOpen) {
-//               return;
-//             }
-//           }
+          if (options.hover && isOpen) {
+            return;
+          }
 
           if (isOpen) {
-            hide(e.target.closest('li'));
+//            hide(e.target.closest('li'));
           } else {
             on(e);
+            e.preventDefault();
           }
       },
 
@@ -217,17 +212,15 @@ console.log(isOpen);
         lis = ul.querySelectorAll(':scope > li');
 
       // add event listener to dismiss popovers when document.body is clicked on
-//      if (! options.hover || TOUCH) {
-        document.body.addEventListener('click', (e) => {
-          const ul = RMR.Node.ancestor(e.target, 'ul.' + ATTRS.drops, false);
-          if (! ul) {
-            for (const i in lis) {
-              if (! RMR.Object.has(lis, i)) { continue; }
-              hide(lis[i]);
-            }
+      document.body.addEventListener('click', (e) => {
+        const ul = RMR.Node.ancestor(e.target, 'ul.' + ATTRS.drops, false);
+        if (! ul) {
+          for (const i in lis) {
+            if (! RMR.Object.has(lis, i)) { continue; }
+            hide(lis[i]);
           }
-        });
-//      }
+        }
+      });
 
       // all
       for (const j in lis) {
@@ -257,8 +250,8 @@ console.log(isOpen);
         }
 
         const a = li.querySelector(':scope dt a');
-        if (options.hover) {
-          li.addEventListener('mouseenter', on);
+        if (options.hover && ! TOUCH) {
+           li.addEventListener('mouseenter', on);
            li.addEventListener('mouseleave', off);
          }
 
