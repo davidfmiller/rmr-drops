@@ -1,6 +1,6 @@
 {
   "name": "rmr-drops",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "My last set of dropdowns",
   "url": "https://davidfmiller.github.io/rmr-drops/",
   "license": "ISC",
@@ -29,6 +29,6 @@
     "webpack": "^5.94.0"
   },
   "dependencies": {
-    "rmr-util": "^1.1.145"
+    "rmr-util": "^1.1.146"
   }
 }
